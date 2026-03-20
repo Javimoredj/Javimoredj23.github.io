@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | DISRUPTIVE_ARCHIVE_01</title>
+    <title>MAONYA | DISRUPTIVE_STREET_01</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --gris-vapor: #d8d8d8;
-            --gris-metal: #b0b0b0;
+            --gris-vapor: #dcdcdc;
             --acento: #000;
             --font-mega: 'Archivo Black', sans-serif;
             --font-tech: 'Syncopate', sans-serif;
@@ -24,40 +23,52 @@
             color: var(--acento);
             font-family: var(--font-mono);
             overflow-x: hidden;
-            background-image: radial-gradient(#bcbcbc 1px, transparent 1px);
-            background-size: 20px 20px; /* Rejilla de fondo */
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* --- ELEMENTOS FLOTANTES DE "LOCURA" --- */
-        .floating-text {
+        /* --- TEXTOS VERTICALES Y "LOCURA" --- */
+        .vertical-text {
+            position: absolute;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            opacity: 0.3;
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        .floating-bg {
             position: fixed;
             font-family: var(--font-mega);
-            font-size: 15vw;
-            color: rgba(0,0,0,0.03);
+            font-size: 20vw;
+            color: rgba(0,0,0,0.02);
             z-index: -1;
-            white-space: nowrap;
-            pointer-events: none;
-            text-transform: uppercase;
+            user-select: none;
         }
 
-        /* --- MARQUESINA AGRESIVA --- */
+        /* --- MARQUESINA SUPERIOR --- */
         .marquee-top {
             background: var(--acento);
             color: #fff;
-            padding: 15px 0;
-            display: flex;
+            padding: 12px 0;
             overflow: hidden;
-            font-family: var(--font-tech);
-            font-size: 12px;
             position: sticky;
             top: 0;
             z-index: 1000;
+            font-family: var(--font-tech);
+            font-size: 10px;
         }
 
         .marquee-content {
             display: flex;
             white-space: nowrap;
-            animation: scroll 15s linear infinite;
+            animation: scroll 12s linear infinite;
         }
 
         @keyframes scroll {
@@ -65,248 +76,232 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- HERO: DESORDEN ORDENADO --- */
+        /* --- HERO: DISRUPTIVO --- */
         header {
-            height: 120vh;
-            padding: 100px 5%;
+            height: 100vh;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .logo-box {
+            justify-content: center;
+            align-items: center;
             position: relative;
-            width: fit-content;
         }
 
         .logo-main {
-            width: 400px;
-            max-width: 90vw;
-            filter: grayscale(1) invert(0);
-            mix-blend-mode: multiply;
+            width: 500px;
+            max-width: 95vw;
             z-index: 10;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .tagline {
+        .logo-main:hover { transform: scale(1.05) rotate(-2deg); }
+
+        .header-tag {
             font-family: var(--font-mega);
-            font-size: 5vw;
-            line-height: 0.8;
-            margin-top: -20px;
+            font-size: 3rem;
             letter-spacing: -2px;
+            margin-top: -30px;
+            z-index: 11;
         }
 
-        /* --- GRID DISRUPTIVA TIPO DROPTOKYO --- */
-        .main-content {
+        /* --- GRID ESTILO "DROPTOKYO" CAÓTICO --- */
+        .gallery {
+            padding: 100px 5%;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 20px;
-            padding: 50px 5%;
+            position: relative;
         }
 
-        .card {
-            background: #c0c0c0;
+        .box {
+            background: #bdbdbd;
+            border: 1px solid var(--acento);
             position: relative;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid var(--acento);
+            transition: 0.4s;
+            height: 450px;
         }
 
-        .card:hover {
-            transform: scale(0.95) rotate(-1deg);
-            z-index: 20;
-        }
+        .box:hover { z-index: 50; transform: scale(0.97); }
 
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            filter: contrast(1.2);
-        }
+        /* Posiciones desordenadas */
+        .b1 { grid-column: 2 / 8; margin-top: 50px; transform: rotate(-1deg); }
+        .b2 { grid-column: 8 / 12; height: 300px; margin-top: -30px; }
+        .b3 { grid-column: 1 / 5; margin-top: -80px; transform: rotate(2deg); }
+        .b4 { grid-column: 6 / 13; height: 600px; }
 
-        /* Posicionamiento Loco */
-        .c1 { grid-column: 1 / 7; height: 500px; margin-top: 50px; }
-        .c2 { grid-column: 8 / 13; height: 350px; }
-        .c3 { grid-column: 2 / 6; height: 400px; margin-top: -100px; }
-        .c4 { grid-column: 7 / 12; height: 600px; margin-top: 20px; }
-
-        .card-info {
+        .box-title {
             position: absolute;
-            bottom: 0;
-            left: 0;
+            top: 20px; right: -30px;
             background: var(--acento);
             color: #fff;
-            padding: 10px 20px;
-            width: 100%;
-            transform: translateY(100%);
-            transition: 0.3s;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.6rem;
+            font-family: var(--font-tech);
         }
 
-        .card:hover .card-info { transform: translateY(0); }
-
-        /* --- SECCIÓN CRIPTO (VISUALMENTE RUIDOSA) --- */
-        .crypto-section {
-            padding: 150px 5%;
-            background: #000;
+        /* --- SECCIÓN CRIPTO (AJUSTE MÓVIL) --- */
+        .crypto-zone {
+            padding: 80px 5%;
+            background: var(--acento);
             color: #fff;
-            transform: skewY(-3deg);
-            margin: 100px 0;
+            overflow: hidden;
         }
-
-        .crypto-section > * { transform: skewY(3deg); }
 
         .crypto-title {
             font-family: var(--font-mega);
-            font-size: 10vw;
-            line-height: 1;
-            margin-bottom: 50px;
+            font-size: 12vw;
+            line-height: 0.8;
+            margin-bottom: 40px;
+            text-align: right;
         }
 
-        .crypto-grid {
+        .crypto-flex {
             display: flex;
-            gap: 50px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
         }
 
-        .crypto-tag {
+        .crypto-item {
             font-family: var(--font-tech);
-            border-bottom: 5px solid #fff;
-            font-size: 2rem;
-            padding-bottom: 10px;
+            font-size: clamp(0.7rem, 3vw, 1.5rem); /* Ajuste dinámico para móvil */
+            letter-spacing: 2px;
         }
 
         /* --- CONTACTO --- */
-        .contact-wrap {
-            padding: 100px 5%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .contact-grid {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
 
-        .btn-huge {
-            display: block;
-            width: 100%;
-            padding: 60px;
-            border: 2px solid var(--acento);
-            font-family: var(--font-mega);
-            font-size: 4vw;
+        .contact-btn {
+            padding: 80px 20px;
+            border: 1px solid var(--acento);
             text-decoration: none;
             color: var(--acento);
-            transition: 0.3s;
+            font-family: var(--font-mega);
+            font-size: 3rem;
             text-align: center;
-        }
-
-        .btn-huge:hover {
-            background: var(--acento);
-            color: #fff;
-            letter-spacing: 10px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 100px 5%;
-            font-size: 0.7rem;
+            transition: 0.4s;
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-btn:hover { background: #fff; letter-spacing: 15px; }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            letter-spacing: 10px;
             border-top: 1px solid var(--acento);
         }
 
-        /* MOBILE */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .c1, .c2, .c3, .c4 { grid-column: 1 / 13; margin-top: 0; height: 400px; }
-            .tagline { font-size: 10vw; }
-            .crypto-title { font-size: 15vw; }
-            .btn-huge { font-size: 8vw; padding: 30px; }
+            .b1, .b2, .b3, .b4 { grid-column: 1 / 13; margin: 10px 0; height: 350px; transform: none; }
+            .header-tag { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-btn { font-size: 2rem; padding: 40px; }
+            .crypto-flex { flex-direction: column; gap: 10px; align-items: flex-end; }
         }
     </style>
 </head>
 <body>
 
-    <div class="floating-text" style="top: 20%; left: -5%;">OVERSIZE</div>
-    <div class="floating-text" style="top: 60%; right: -5%;">SOLANA_STREET</div>
+    <div class="floating-bg" style="top: 10%; right: -5%;">M_A</div>
+    <div class="floating-bg" style="bottom: 5%; left: -2%;">N_Y_A</div>
 
     <div class="marquee-top">
         <div class="marquee-content">
-            MAONYA_DROP_01 // PAGOS: SOLANA - USDT - USDC // PIEZAS ÚNICAS 1:1 // SIN GÉNERO // MAONYA_DROP_01 // PAGOS: SOLANA - USDT - USDC // PIEZAS ÚNICAS 1:1 // SIN GÉNERO // 
+            MAONYA DROP_01 • OVERSIZE TENDENCY • 1:1 EDITIONS • BLOCKCHAIN PAYMENT • MAONYA DROP_01 • OVERSIZE TENDENCY • 1:1 EDITIONS • BLOCKCHAIN PAYMENT • 
         </div>
     </div>
 
     <header>
-        <div class="logo-box">
-            <img src="logo.png" alt="MAONYA" class="logo-main">
-            <div class="tagline">CALLE_DIGITAL<br>MAO_NYA</div>
-        </div>
+        <div class="vertical-text" style="top: 100px; left: 20px;">EDICIÓN_LIMITADA</div>
+        <div class="vertical-text" style="bottom: 100px; right: 20px;">ALTA_MODA_DIGITAL</div>
         
-        <div style="max-width: 400px; font-weight: 700;">
-            [ ARCHIVO_01 ]<br>
-            NO SEGUIMOS TENDENCIAS. LAS CREAMOS EN LA BLOCKCHAIN. MODA DISRUPTIVA PARA UNA GENERACIÓN QUE NO PAGA CON PAPEL.
-        </div>
+        <img src="logo.png" alt="MAONYA" class="logo-main">
+        <div class="header-tag">DROP_001</div>
+        
+        <p style="margin-top: 40px; max-width: 300px; text-align: center; font-size: 0.7rem; font-weight: 700;">
+            [ SIN REGLAS ]<br>
+            LA CONVERGENCIA ENTRE EL LUJO TEXTIL Y LA LIBERTAD FINANCIERA.
+        </p>
     </header>
 
-    <section class="main-content">
-        <div class="card c1">
-            <div class="card-info">DROP_001 / SOLANA_CORE</div>
+    <section class="gallery">
+        <div class="vertical-text" style="top: 0; left: 50%; opacity: 0.1;">CRIPTO_NATIVO</div>
+        
+        <div class="box b1">
+            <div class="box-title">001_OVERSIZE</div>
         </div>
-        <div class="card c2">
-            <div class="card-info">DROP_002 / USDC_STREET</div>
+        <div class="box b2">
+            <div class="box-title">002_SOLANA</div>
         </div>
-        <div class="card c3">
-            <div class="card-info">DROP_003 / OVERSIZE_VIBE</div>
+        <div class="box b3">
+            <div class="box-title">003_UNIQUE</div>
         </div>
-        <div class="card c4">
-            <div class="card-info">DROP_004 / 1_OF_1_ONLY</div>
+        <div class="box b4">
+            <div class="box-title">004_FUTURE</div>
         </div>
     </section>
 
-    <section class="crypto-section">
+    <section class="crypto-zone">
         <div class="crypto-title">SOLANA<br>USDT_USDC</div>
-        <div class="crypto-grid">
-            <div class="crypto-tag">NATIVO</div>
-            <div class="crypto-tag">DIRECTO</div>
-            <div class="crypto-tag">100%_WEB3</div>
+        <div class="crypto-flex">
+            <div class="crypto-item">/ SOLANA</div>
+            <div class="crypto-item">/ USDT</div>
+            <div class="crypto-item">/ USDC</div>
         </div>
     </section>
 
-    <section class="contact-wrap">
-        <a href="https://wa.me/34651420859" class="btn-huge">WHATSAPP</a>
-        <a href="mailto:javimoredj@gmail.com" class="btn-huge">EMAIL</a>
+    <section class="contact-grid">
+        <a href="https://wa.me/34651420859" class="contact-btn">WA</a>
+        <a href="mailto:javimoredj@gmail.com" class="contact-btn">MAIL</a>
     </section>
 
     <footer>
-        <div>MAONYA_ESTUDIO © 2026</div>
-        <div>ESPAÑA / TOKYO / METAVERSO</div>
+        MAONYA
     </footer>
 
     <script>
-        // Efecto de movimiento sutil al mover el ratón (Parallax)
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            
-            document.querySelectorAll('.card').forEach(card => {
-                card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        // Efecto Parallax suave al hacer scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.vertical-text').forEach((el, i) => {
+                const speed = 0.5 + (i * 0.1);
+                el.style.transform = `translateY(${scrolled * speed * 0.2}px)`;
             });
             
-            document.querySelectorAll('.floating-text').forEach(text => {
-                text.style.transform = `translate(${-moveX * 5}px, ${-moveY * 5}px)`;
+            document.querySelectorAll('.b1, .b3').forEach(el => {
+                el.style.transform = `translateY(${scrolled * -0.05}px) rotate(1deg)`;
             });
         });
 
-        // Revelado al hacer scroll
-        const observer = new IntersectionObserver((entries) => {
+        // Revelado suave de cajas
+        const boxes = document.querySelectorAll('.box');
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
                     entry.target.style.filter = "blur(0px)";
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = "0";
-            card.style.filter = "blur(10px)";
-            card.style.transition = "all 1s ease";
-            observer.observe(card);
+        boxes.forEach(box => {
+            box.style.opacity = 0;
+            box.style.filter = "blur(20px)";
+            box.style.transition = "all 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
+            observer.observe(box);
         });
     </script>
 </body>
