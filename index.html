@@ -3,185 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | Digital Fashion Genesis</title>
+    <title>MAONYA | Edición Limitada Oversize & Crypto</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Work+Sans:wght@200;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #050505;
-            --accent-color: #d199f7;
-            --secondary-accent: #70e2ff;
-            --text-main: #ffffff;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-100: #f5f5f5;
+            --gray-300: #e0e0e0;
+            --crypto-accent: #d199f7; /* Un toque sutil del logo antiguo */
+            --font-tech: 'Syncopate', sans-serif;
+            --font-body: 'Work Sans', sans-serif;
+            --transition-slow: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
+        /* --- Reset y Estilos Base (LIMPIEZA TOTAL) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-body);
+            font-weight: 200;
+            line-height: 1.6;
+            overflow-x: hidden;
+            opacity: 0; /* Para la animación de entrada */
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        /* --- Animaciones Globales (WEB VIVA) --- */
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes subtlePan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes cryptoGlow {
+            0%, 100% { text-shadow: 0 0 5px rgba(209, 153, 247, 0); }
+            50% { text-shadow: 0 0 15px rgba(209, 153, 247, 0.3); }
+        }
+
+        /* --- Layout General --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        h1, h2, h3, .tech-text {
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+
+        /* --- 1. HERO SECTION (PRIMERA IMPRESIÓN BLANCA) --- */
+        .hero {
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-
-        /* Malla de fondo sutil */
-        body::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(209, 153, 247, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(209, 153, 247, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(circle, black, transparent 90%);
-            z-index: -1;
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-            animation: fadeIn 2s ease-out;
-        }
-
-        .coming-soon {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 30px;
-            font-weight: 900;
-            text-indent: 1.5rem;
-            opacity: 0.7;
-            animation: pulse 3s infinite alternate;
-        }
-
-        .logo-container {
             position: relative;
-            display: inline-block;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            background: linear-gradient(-45deg, #ffffff, #fcfcfc, #f5f5f5);
+            background-size: 400% 400%;
+            animation: subtlePan 15s ease infinite;
         }
 
-        .logo-img {
-            max-width: 340px;
-            height: auto;
-            filter: drop-shadow(0 0 40px rgba(209, 153, 247, 0.15));
-            animation: float 6s ease-in-out infinite;
+        .main-logo {
+            width: 280px;
+            max-width: 80%;
+            margin-bottom: 40px;
+            /* Filtro para que el logo iridiscente destaque más sobre blanco */
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.05));
+            transition: var(--transition-slow);
         }
 
-        /* Sección de Marca y Moda */
-        .brand-statement {
-            margin-top: 40px;
+        .hero:hover .main-logo {
+            transform: scale(1.03);
         }
 
-        .main-title {
-            font-size: 1.2rem;
-            letter-spacing: 0.4rem;
+        .headline {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.7rem;
+            color: #aaa;
             text-transform: uppercase;
-            font-weight: 300;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #fff, var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
         }
 
-        .sub-statement {
-            font-size: 0.8rem;
-            color: #888;
-            max-width: 400px;
-            margin: 0 auto;
-            line-height: 1.6;
-            letter-spacing: 0.05rem;
-            font-weight: 300;
+        /* --- 2. MANIFESTO OVERSIZE (IDENTIDAD) --- */
+        .manifesto {
+            padding: 120px 0;
+            background-color: var(--gray-100);
         }
 
-        .status-footer {
-            margin-top: 40px;
+        .oversize-statement {
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .oversize-statement span {
+            color: var(--gray-300);
+            transition: var(--transition-slow);
+        }
+
+        .manifesto:hover .oversize-statement span {
+            color: var(--black);
+        }
+
+        .manifesto-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .manifesto-box h3 { font-size: 0.9rem; margin-bottom: 20px; }
+        .manifesto-box p { color: #555; font-size: 0.95rem; }
+
+        /* --- 3. CRYPTO & EXCLUSIVITY (LA PROPUESTA) --- */
+        .exclusivity {
+            padding: 120px 0;
+        }
+
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .crypto-card {
+            border: 1px solid var(--gray-300);
+            padding: 60px 40px;
+            transition: var(--transition-slow);
+        }
+
+        .crypto-card:hover {
+            border-color: var(--black);
+            background-color: var(--gray-100);
+            transform: translateY(-5px);
+        }
+
+        .crypto-icon { font-size: 2rem; margin-bottom: 30px; color: #aaa; }
+        
+        .crypto-card h3 { font-size: 0.85rem; margin-bottom: 15px; }
+        .crypto-card p { font-size: 0.9rem; color: #666; }
+
+        /* Efecto de brillo sutil en 'Nativa' */
+        .crypto-card.active-crypto .crypto-icon { color: var(--black); }
+        .crypto-card.active-crypto h3 { animation: cryptoGlow 4s infinite; }
+
+        /* --- 4. TEAM & TREND (JAVIER² Y EL FUTURO) --- */
+        .team {
+            padding: 120px 0;
+            background-color: var(--gray-100);
+        }
+
+        .team-statement {
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .trend-callout {
+            font-family: var(--font-tech);
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--gray-300);
+            margin-bottom: 40px;
+            transition: var(--transition-slow);
+        }
+
+        .team:hover .trend-callout {
+            color: var(--black);
+        }
+
+        .creators-info {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            justify-content: space-around;
+            max-width: 800px;
+            margin: 60px auto 0;
         }
 
-        .payment-pill {
-            font-size: 0.6rem;
-            color: var(--secondary-accent);
-            border: 1px border-style: solid;
-            border-color: rgba(112, 226, 255, 0.2);
-            padding: 6px 16px;
-            border-radius: 50px;
+        .creator-box h3 { font-size: 0.7rem; color: #888; }
+        .creator-box p { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; }
+
+        /* --- 5. CONTACTO & PEDIDOS (BOTONES ELEGANTES) --- */
+        .contact {
+            padding: 140px 0;
+            text-align: center;
+        }
+
+        .contact h2 { font-size: 1.4rem; margin-bottom: 20px; }
+        .contact p { margin-bottom: 70px; color: #555; }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 40px;
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: var(--transition-slow);
+        }
+
+        /* Botón WhatsApp */
+        .btn-whatsapp {
+            background-color: var(--black);
+            color: var(--white);
+            border: 1px solid var(--black);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--white);
+            color: var(--black);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Botón Correo */
+        .btn-mail {
+            border: 1px solid var(--gray-300);
+            color: #555;
+        }
+
+        .btn-mail:hover {
+            border-color: var(--black);
+            color: var(--black);
+            background-color: var(--gray-100);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--gray-300);
+            text-align: center;
+            font-size: 0.7rem;
+            color: #aaa;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: rgba(112, 226, 255, 0.03);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .dot {
-            width: 4px;
-            height: 4px;
-            background-color: var(--secondary-accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--secondary-accent);
-            animation: blink 1.5s infinite;
+        /* --- Adaptación Móvil (RESPONSIVE) --- */
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .oversize-statement { font-size: 2rem; }
+            .manifesto-details, .crypto-grid { grid-template-columns: 1fr; gap: 30px; }
+            .trend-callout { font-size: 2.2rem; }
+            .creators-info { flex-direction: column; gap: 20px; text-align: center; }
+            .btn { width: 100%; justify-content: center; }
+            .main-logo { width: 220px; }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse {
-            from { opacity: 0.3; filter: blur(2px); }
-            to { opacity: 0.8; filter: blur(0); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 600px) {
-            .logo-img { max-width: 260px; }
-            .coming-soon { letter-spacing: 1rem; text-indent: 1rem; }
-            .main-title { font-size: 1rem; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="coming-soon">Próximamente</div>
+    <section class="hero">
+        <img src="logo.png" alt="MAONYA" class="main-logo">
+        <p class="headline tech-text">Fusión Oversize • Exclusividad 1:1 • Pagos Cripto</p>
+        <div class="scroll-down">Scroll →</div>
+    </section>
 
-        <div class="logo-container">
-            <img src="logo.png" alt="MAONYA Logo" class="logo-img">
-        </div>
-
-        <div class="brand-statement">
-            <h1 class="main-title">Alta Moda Digital</h1>
-            <p class="sub-statement">
-                Fusionando el diseño textil de vanguardia con la libertad financiera del futuro.
-            </p>
-        </div>
-
-        <div class="status-footer">
-            <div class="payment-pill">
-                <span class="dot"></span>
-                Ecosistema de Pagos Criptoactivos Nativo
+    <section class="manifesto">
+        <div class="container">
+            <h2 class="oversize-statement">La Tendencia del Futuro<br>es <span>Oversize.</span></h2>
+            <div class="manifesto-details">
+                <div class="manifesto-box">
+                    <h3>Identidad Ampliada</h3>
+                    <p>En MAONYA no solo vestimos; expandimos tu presencia. Nuestra estética oversize no es una talla, es una declaración futurista de libertad y volumen.</p>
+                </div>
+                <div class="manifesto-box">
+                    <h3>Arquitectura Textil</h3>
+                    <p>Fusionamos cortes técnicos avanzados con el diseño textil de vanguardia para crear siluetas que desafían lo convencional.</p>
+                </div>
             </div>
-            
-            <p style="font-size: 0.65rem; color: #444; text-transform: uppercase; letter-spacing: 2px;">
-                Blockchain Deployment in progress
-            </p>
         </div>
-    </div>
+    </section>
+
+    <section class="exclusivity">
+        <div class="container">
+            <div class="crypto-grid">
+                <div class="crypto-card">
+                    <div class="crypto-icon">↗</div>
+                    <h3>Seremos Tendencia</h3>
+                    <p>No seguimos el mercado; lo definimos. MAONYA está diseñada para liderar la conversación de la moda global.</p>
+                </div>
+                
+                <div class="crypto-card active-crypto">
+                    <div class="crypto-icon">₿</div>
+                    <h3>Ecosistema Cripto</h3>
+                    <p>Integración nativa. Aceptamos las principales criptomonedas como el estándar de pago para la nueva economía digital.</p>
+                </div>
+                
+                <div class="crypto-card">
+                    <div class="crypto-icon">1</div>
+                    <h3>Cada Prenda Única</h3>
+                    <p>Concepto 1:1. Solo existirá una unidad de cada diseño. Exclusividad absoluta garantizada por contrato digital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <p class="trend-callout">Javier². El Futuro es Ahora.</p>
+            <p class="team-statement">MAONYA es la visión de una doble dirección creativa. Un equipo cohesionado para redefinir el lujo digital.</p>
+            
+            <div class="creators-info">
+                <div class="creator-box">
+                    <h3>Creador</h3>
+                    <p>JAVIER</p>
+                </div>
+                <div class="creator-box">
+                    <h3>Co-CEO</h3>
+                    <p>JAVIER</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2>Pedidos & Consultas</h2>
+            <p>Conecta con nosotros para adquirir tu pieza única o resolver cualquier duda sobre el ecosistema cripto.</p>
+            
+            <div class="btn-group">
+                <a href="https://wa.me/34651420859?text=Hola,%20me%20interesa%20un%20pedido%20de%20MAONYA." class="btn btn-whatsapp" target="_blank">
+                    WhatsApp (651420859)
+                </a>
+                
+                <a href="mailto:javimoredj@gmail.com?subject=Pedido%20MAONYA" class="btn btn-mail">
+                    Escribir Correo (Pedidos)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 MAONYA | Alta Moda Oversize & Crypto | All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
