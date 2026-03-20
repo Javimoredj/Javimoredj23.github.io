@@ -1,342 +1,287 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | Futuro del Lujo Digital</title>
+    <title>MAONYA | DROP TOKYO STYLE</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@100;300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-mercurio: #ebebeb;
-            --bg-cristal: rgba(255, 255, 255, 0.45);
+            --gris-vapor: #e0e0e0;
+            --gris-metal: #c2c2c2;
             --acento: #000000;
-            --texto: #1a1a1a;
-            --font-tech: 'Syncopate', sans-serif;
-            --font-cuerpo: 'Outfit', sans-serif;
+            --texto: #111111;
+            --font-head: 'Syncopate', sans-serif;
+            --font-mono: 'Space Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background: linear-gradient(135deg, #e0e0e0, #f5f5f5, #ffffff);
-            background-size: 400% 400%;
-            animation: movimientoFondo 15s ease infinite;
+            background-color: var(--gris-vapor);
             color: var(--texto);
-            font-family: var(--font-cuerpo);
+            font-family: var(--font-mono);
             overflow-x: hidden;
         }
 
-        @keyframes movimientoFondo {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* --- MARQUESINA (TEXTO EN MOVIMIENTO) --- */
+        .ticker {
+            background: var(--acento);
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            top: 0; width: 100%; z-index: 2000;
+            font-family: var(--font-head);
+            font-size: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .ticker-wrap { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* --- NAVEGACIÓN --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 25px 50px;
+            padding: 60px 40px 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(0,0,0,0.03);
+            align-items: flex-start;
         }
 
-        .enlaces { display: flex; gap: 30px; }
-        .enlaces a {
-            font-family: var(--font-tech);
-            font-size: 0.55rem;
+        .logo-maonya {
+            width: 250px;
+            filter: grayscale(1);
+            transition: 0.5s;
+        }
+
+        .nav-menu { text-align: right; }
+        .nav-menu a {
+            display: block;
             text-decoration: none;
             color: var(--texto);
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .enlaces a:hover { opacity: 0.4; transform: translateY(-1px); }
-
-        /* --- HERO --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .logo-principal {
-            width: 380px;
-            max-width: 80%;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.05));
-            animation: flotar 5s ease-in-out infinite;
-        }
-
-        @keyframes flotar {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .hero h1 {
-            font-family: var(--font-tech);
-            font-size: 0.8rem;
-            letter-spacing: 10px;
-            margin-top: 50px;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-
-        .hero p {
-            margin-top: 15px;
-            font-weight: 200;
-            letter-spacing: 5px;
             font-size: 0.7rem;
+            margin-bottom: 5px;
+            font-weight: 700;
             text-transform: uppercase;
         }
 
-        /* --- SECCIÓN TIENDA --- */
-        .tienda {
-            padding: 100px 5% 150px;
-            max-width: 1500px;
-            margin: 0 auto;
+        /* --- SECCIÓN EDITORIAL (ESTILO DROPTOKYO) --- */
+        .editorial {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
         }
 
-        .filtros {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 60px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-        }
-
-        .filtro-btn {
-            background: var(--bg-cristal);
+        .item {
+            background: var(--gris-metal);
+            position: relative;
+            overflow: hidden;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             border: 1px solid rgba(0,0,0,0.05);
-            padding: 12px 28px;
-            border-radius: 2px;
-            font-family: var(--font-tech);
-            font-size: 0.5rem;
-            cursor: pointer;
-            transition: 0.4s;
-            white-space: nowrap;
-            letter-spacing: 1px;
         }
 
-        .filtro-btn:hover, .filtro-btn.activo {
+        .item:hover { transform: scale(0.98); }
+
+        /* Tamaños asimétricos */
+        .size-lg { grid-column: span 8; aspect-ratio: 16/9; }
+        .size-md { grid-column: span 4; aspect-ratio: 3/4; }
+        .size-sm { grid-column: span 6; aspect-ratio: 1/1; }
+
+        .item-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .item-info h3 {
+            font-family: var(--font-head);
+            font-size: 0.8rem;
             background: var(--acento);
             color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .cuadricula {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .producto {
-            background: var(--bg-cristal);
-            aspect-ratio: 4/5;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.7);
-            transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            overflow: hidden;
-            cursor: crosshair;
-        }
-
-        .producto:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.04);
-        }
-
-        .producto h3 {
-            font-family: var(--font-tech);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
+            display: inline-block;
+            padding: 5px 10px;
             margin-bottom: 5px;
         }
 
-        .producto .categoria {
+        .item-info p {
             font-size: 0.6rem;
+            background: white;
+            padding: 2px 8px;
+            display: table;
             text-transform: uppercase;
-            color: #777;
-            letter-spacing: 2px;
         }
 
-        .badge-precio {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            font-family: var(--font-tech);
-            font-size: 0.6rem;
-            background: rgba(0,0,0,0.03);
-            padding: 5px 10px;
+        /* --- CRIPTO SECTION --- */
+        .seccion-cripto {
+            padding: 100px 40px;
+            border-top: 2px solid var(--acento);
+            margin-top: 50px;
         }
 
-        /* --- BANNER CRIPTO --- */
-        .pagos-cripto {
-            background: var(--acento);
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
+        .seccion-cripto h2 {
+            font-family: var(--font-head);
+            font-size: clamp(2rem, 8vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -2px;
+            margin-bottom: 40px;
         }
 
-        .pagos-cripto h2 {
-            font-family: var(--font-tech);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            letter-spacing: 5px;
-        }
-
-        .monedas {
+        .pagos-lista {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            gap: 20px;
+            flex-wrap: wrap;
         }
+
+        .pago-tag {
+            border: 1px solid var(--acento);
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .pago-tag:hover { background: var(--acento); color: white; }
 
         /* --- CONTACTO --- */
         .contacto {
-            padding: 150px 20px;
-            text-align: center;
+            padding: 100px 40px;
+            background: #d4d4d4;
         }
 
-        .btn-contacto {
-            display: inline-block;
-            padding: 22px 60px;
-            border: 1px solid var(--acento);
-            text-decoration: none;
-            color: var(--acento);
-            font-family: var(--font-tech);
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            margin: 15px;
-            transition: 0.4s;
-            position: relative;
-        }
-
-        .btn-contacto:hover {
+        .btn-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
             background: var(--acento);
-            color: white;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 2px solid var(--acento);
         }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 60px;
+        .btn-directo {
+            background: var(--gris-vapor);
+            color: var(--acento);
+            padding: 40px;
             text-align: center;
-            font-size: 0.55rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            text-decoration: none;
+            font-family: var(--font-head);
+            font-size: 0.7rem;
+            transition: 0.4s;
         }
 
+        .btn-directo:hover { background: var(--acento); color: white; }
+
+        footer {
+            padding: 40px;
+            font-size: 0.6rem;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            nav { padding: 20px; }
-            .enlaces { display: none; }
-            .logo-principal { width: 280px; }
-            .cuadricula { grid-template-columns: 1fr; }
-            .monedas { flex-direction: column; gap: 15px; }
+            .size-lg, .size-md, .size-sm { grid-column: span 12; }
+            .btn-box { grid-template-columns: 1fr; }
+            nav { padding: 80px 20px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div style="font-family: var(--font-tech); font-size: 0.8rem; letter-spacing: 3px;">MAONYA</div>
-        <div class="enlaces">
-            <a href="#productos">COLECCIÓN</a>
-            <a href="#cripto">PAGOS</a>
-            <a href="#contacto">CONTACTO</a>
+    <div class="ticker">
+        <div class="ticker-wrap">
+            MAONYA_DROP_001 • PAGOS NATIVOS: SOLANA • USDT • USDC • EDICIÓN LIMITADA 1/1 • TENDENCIA OVERSIZE • MAONYA_DROP_001 • PAGOS NATIVOS: SOLANA • USDT • USDC • EDICIÓN LIMITADA 1/1 • TENDENCIA OVERSIZE • 
         </div>
-        <div style="font-size: 0.6rem; font-family: var(--font-tech);">MODO_DISRUPTIVO</div>
+    </div>
+
+    <nav>
+        <img src="logo.png" alt="MAONYA" class="logo-maonya">
+        <div class="nav-menu">
+            <a href="#">PIEZAS</a>
+            <a href="#">PAGOS_BLOCKCHAIN</a>
+            <a href="#">CONTACTO</a>
+        </div>
     </nav>
 
-    <section class="hero">
-        <img src="logo.png" alt="MAONYA" class="logo-principal">
-        <h1>MAONYA_ESTUDIO</h1>
-        <p>Tendencia Oversize & Exclusividad Digital</p>
-    </section>
-
-    <section class="tienda" id="productos">
-        <div class="filtros">
-            <button class="filtro-btn activo">TODAS_LAS_PIEZAS</button>
-            <button class="filtro-btn">CÁPSULAS</button>
-            <button class="filtro-btn">ACCESORIOS</button>
-            <button class="filtro-btn">EDICIONES_1:1</button>
+    <section class="editorial">
+        <div class="item size-lg">
+            <div class="item-info">
+                <h3>001_GENESIS_CORE</h3>
+                <p>Oversize / Algodón Técnico / 1:1</p>
+            </div>
         </div>
 
-        <div class="cuadricula">
-            <div class="producto">
-                <div class="badge-precio">SOLANA / USDT</div>
-                <h3>GÉNESIS_OVERSIZE_01</h3>
-                <p class="categoria">Pieza Única 1 de 1</p>
+        <div class="item size-md">
+            <div class="item-info">
+                <h3>002_SOL_VIBES</h3>
+                <p>Accesorios / Digital Asset</p>
             </div>
-            <div class="producto">
-                <div class="badge-precio">SOLANA / USDC</div>
-                <h3>SUDADERA_NEURONAL</h3>
-                <p class="categoria">Corte Técnico Vanguardia</p>
+        </div>
+
+        <div class="item size-sm">
+            <div class="item-info">
+                <h3>003_VOID_PANTS</h3>
+                <p>Corte Asimétrico</p>
             </div>
-            <div class="producto">
-                <div class="badge-precio">PRÓXIMAMENTE</div>
-                <h3>ACCESORIO_VOID</h3>
-                <p class="categoria">Activo Digital Verificado</p>
+        </div>
+
+        <div class="item size-sm">
+            <div class="item-info">
+                <h3>004_META_TECH</h3>
+                <p>Limited Edition</p>
             </div>
         </div>
     </section>
 
-    <section class="pagos-cripto" id="cripto">
-        <h2>PAGOS NATIVOS EN BLOCKCHAIN</h2>
-        <div class="monedas">
-            <span>SOLANA (SOL)</span>
-            <span>USDC</span>
-            <span>USDT</span>
+    <section class="seccion-cripto">
+        <h2>PAGOS<br>FUTUROS.</h2>
+        <div class="pagos-lista">
+            <div class="pago-tag">SOLANA (SOL)</div>
+            <div class="pago-tag">USDT</div>
+            <div class="pago-tag">USDC</div>
         </div>
-        <p style="margin-top: 40px; font-size: 0.6rem; letter-spacing: 2px; opacity: 0.6;">TRANSACCIONES SEGURAS • SIN INTERMEDIARIOS</p>
+        <p style="margin-top: 40px; max-width: 400px; font-size: 0.8rem;">Aceptamos activos digitales como estándar. Sin bancos. Sin esperas. Directo de tu wallet a MAONYA.</p>
     </section>
 
-    <section class="contacto" id="contacto">
-        <h2 style="font-family: var(--font-tech); font-size: 0.9rem; margin-bottom: 50px; letter-spacing: 5px;">ADQUISICIONES_DIRECTAS</h2>
-        <a href="https://wa.me/34651420859" class="btn-contacto">WHATSAPP_LINEA</a>
-        <a href="mailto:javimoredj@gmail.com" class="btn-contacto">EMAIL_PEDIDOS</a>
+    <section class="contacto">
+        <div class="btn-box">
+            <a href="https://wa.me/34651420859" class="btn-directo">WHATSAPP_LINE</a>
+            <a href="mailto:javimoredj@gmail.com" class="btn-directo">EMAIL_PEDIDOS</a>
+        </div>
     </section>
 
     <footer>
-        MAONYA © 2026 • ARCHIVO DIGITAL • TENDENCIA DISRUPTIVA
+        MAONYA © 2026_DISRUPTIVE_ARCHIVE
     </footer>
 
     <script>
-        // Animación suave de aparición al hacer scroll
-        const productos = document.querySelectorAll('.producto');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = "translateY(0)";
+        // Efecto de aparición suave tipo "stagger"
+        const items = document.querySelectorAll('.item');
+        const observerOptions = { threshold: 0.1 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }, index * 100);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        productos.forEach(p => {
-            p.style.opacity = 0;
-            p.style.transform = "translateY(40px)";
-            p.style.transition = "all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)";
-            observer.observe(p);
+        items.forEach(item => {
+            item.style.opacity = "0";
+            item.style.transform = "translateY(50px)";
+            item.style.transition = "all 0.8s cubic-bezier(0.19, 1, 0.22, 1)";
+            observer.observe(item);
         });
     </script>
 </body>
 </html>
+
