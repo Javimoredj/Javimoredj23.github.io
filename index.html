@@ -3,285 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | DROP TOKYO STYLE</title>
+    <title>MAONYA | DISRUPTIVE_ARCHIVE_01</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --gris-vapor: #e0e0e0;
-            --gris-metal: #c2c2c2;
-            --acento: #000000;
-            --texto: #111111;
-            --font-head: 'Syncopate', sans-serif;
+            --gris-vapor: #d8d8d8;
+            --gris-metal: #b0b0b0;
+            --acento: #000;
+            --font-mega: 'Archivo Black', sans-serif;
+            --font-tech: 'Syncopate', sans-serif;
             --font-mono: 'Space Mono', monospace;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        
         body {
             background-color: var(--gris-vapor);
-            color: var(--texto);
+            color: var(--acento);
             font-family: var(--font-mono);
             overflow-x: hidden;
+            background-image: radial-gradient(#bcbcbc 1px, transparent 1px);
+            background-size: 20px 20px; /* Rejilla de fondo */
         }
 
-        /* --- MARQUESINA (TEXTO EN MOVIMIENTO) --- */
-        .ticker {
-            background: var(--acento);
-            color: white;
-            padding: 10px 0;
-            overflow: hidden;
-            white-space: nowrap;
+        /* --- ELEMENTOS FLOTANTES DE "LOCURA" --- */
+        .floating-text {
             position: fixed;
-            top: 0; width: 100%; z-index: 2000;
-            font-family: var(--font-head);
-            font-size: 0.5rem;
-            letter-spacing: 2px;
+            font-family: var(--font-mega);
+            font-size: 15vw;
+            color: rgba(0,0,0,0.03);
+            z-index: -1;
+            white-space: nowrap;
+            pointer-events: none;
+            text-transform: uppercase;
         }
 
-        .ticker-wrap { display: inline-block; animation: marquee 20s linear infinite; }
-        @keyframes marquee {
+        /* --- MARQUESINA AGRESIVA --- */
+        .marquee-top {
+            background: var(--acento);
+            color: #fff;
+            padding: 15px 0;
+            display: flex;
+            overflow: hidden;
+            font-family: var(--font-tech);
+            font-size: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 15s linear infinite;
+        }
+
+        @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* --- NAVEGACIÓN --- */
-        nav {
-            padding: 60px 40px 20px;
+        /* --- HERO: DESORDEN ORDENADO --- */
+        header {
+            height: 120vh;
+            padding: 100px 5%;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: flex-start;
         }
 
-        .logo-maonya {
-            width: 250px;
-            filter: grayscale(1);
-            transition: 0.5s;
-        }
-
-        .nav-menu { text-align: right; }
-        .nav-menu a {
-            display: block;
-            text-decoration: none;
-            color: var(--texto);
-            font-size: 0.7rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        /* --- SECCIÓN EDITORIAL (ESTILO DROPTOKYO) --- */
-        .editorial {
-            padding: 40px;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-        }
-
-        .item {
-            background: var(--gris-metal);
+        .logo-box {
             position: relative;
-            overflow: hidden;
-            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            border: 1px solid rgba(0,0,0,0.05);
+            width: fit-content;
         }
 
-        .item:hover { transform: scale(0.98); }
-
-        /* Tamaños asimétricos */
-        .size-lg { grid-column: span 8; aspect-ratio: 16/9; }
-        .size-md { grid-column: span 4; aspect-ratio: 3/4; }
-        .size-sm { grid-column: span 6; aspect-ratio: 1/1; }
-
-        .item-info {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
+        .logo-main {
+            width: 400px;
+            max-width: 90vw;
+            filter: grayscale(1) invert(0);
+            mix-blend-mode: multiply;
             z-index: 10;
         }
 
-        .item-info h3 {
-            font-family: var(--font-head);
-            font-size: 0.8rem;
-            background: var(--acento);
-            color: white;
-            display: inline-block;
-            padding: 5px 10px;
-            margin-bottom: 5px;
-        }
-
-        .item-info p {
-            font-size: 0.6rem;
-            background: white;
-            padding: 2px 8px;
-            display: table;
-            text-transform: uppercase;
-        }
-
-        /* --- CRIPTO SECTION --- */
-        .seccion-cripto {
-            padding: 100px 40px;
-            border-top: 2px solid var(--acento);
-            margin-top: 50px;
-        }
-
-        .seccion-cripto h2 {
-            font-family: var(--font-head);
-            font-size: clamp(2rem, 8vw, 5rem);
-            line-height: 0.9;
+        .tagline {
+            font-family: var(--font-mega);
+            font-size: 5vw;
+            line-height: 0.8;
+            margin-top: -20px;
             letter-spacing: -2px;
-            margin-bottom: 40px;
         }
 
-        .pagos-lista {
-            display: flex;
+        /* --- GRID DISRUPTIVA TIPO DROPTOKYO --- */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
             gap: 20px;
-            flex-wrap: wrap;
+            padding: 50px 5%;
         }
 
-        .pago-tag {
+        .card {
+            background: #c0c0c0;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid var(--acento);
+        }
+
+        .card:hover {
+            transform: scale(0.95) rotate(-1deg);
+            z-index: 20;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            filter: contrast(1.2);
+        }
+
+        /* Posicionamiento Loco */
+        .c1 { grid-column: 1 / 7; height: 500px; margin-top: 50px; }
+        .c2 { grid-column: 8 / 13; height: 350px; }
+        .c3 { grid-column: 2 / 6; height: 400px; margin-top: -100px; }
+        .c4 { grid-column: 7 / 12; height: 600px; margin-top: 20px; }
+
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: var(--acento);
+            color: #fff;
             padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 700;
+            width: 100%;
+            transform: translateY(100%);
             transition: 0.3s;
         }
 
-        .pago-tag:hover { background: var(--acento); color: white; }
+        .card:hover .card-info { transform: translateY(0); }
+
+        /* --- SECCIÓN CRIPTO (VISUALMENTE RUIDOSA) --- */
+        .crypto-section {
+            padding: 150px 5%;
+            background: #000;
+            color: #fff;
+            transform: skewY(-3deg);
+            margin: 100px 0;
+        }
+
+        .crypto-section > * { transform: skewY(3deg); }
+
+        .crypto-title {
+            font-family: var(--font-mega);
+            font-size: 10vw;
+            line-height: 1;
+            margin-bottom: 50px;
+        }
+
+        .crypto-grid {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .crypto-tag {
+            font-family: var(--font-tech);
+            border-bottom: 5px solid #fff;
+            font-size: 2rem;
+            padding-bottom: 10px;
+        }
 
         /* --- CONTACTO --- */
-        .contacto {
-            padding: 100px 40px;
-            background: #d4d4d4;
+        .contact-wrap {
+            padding: 100px 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .btn-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: var(--acento);
+        .btn-huge {
+            display: block;
+            width: 100%;
+            padding: 60px;
             border: 2px solid var(--acento);
-        }
-
-        .btn-directo {
-            background: var(--gris-vapor);
-            color: var(--acento);
-            padding: 40px;
-            text-align: center;
+            font-family: var(--font-mega);
+            font-size: 4vw;
             text-decoration: none;
-            font-family: var(--font-head);
-            font-size: 0.7rem;
-            transition: 0.4s;
-        }
-
-        .btn-directo:hover { background: var(--acento); color: white; }
-
-        footer {
-            padding: 40px;
-            font-size: 0.6rem;
+            color: var(--acento);
+            transition: 0.3s;
             text-align: center;
-            letter-spacing: 5px;
         }
 
-        /* Responsive */
+        .btn-huge:hover {
+            background: var(--acento);
+            color: #fff;
+            letter-spacing: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 100px 5%;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--acento);
+        }
+
+        /* MOBILE */
         @media (max-width: 768px) {
-            .size-lg, .size-md, .size-sm { grid-column: span 12; }
-            .btn-box { grid-template-columns: 1fr; }
-            nav { padding: 80px 20px 20px; }
+            .c1, .c2, .c3, .c4 { grid-column: 1 / 13; margin-top: 0; height: 400px; }
+            .tagline { font-size: 10vw; }
+            .crypto-title { font-size: 15vw; }
+            .btn-huge { font-size: 8vw; padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ticker">
-        <div class="ticker-wrap">
-            MAONYA_DROP_001 • PAGOS NATIVOS: SOLANA • USDT • USDC • EDICIÓN LIMITADA 1/1 • TENDENCIA OVERSIZE • MAONYA_DROP_001 • PAGOS NATIVOS: SOLANA • USDT • USDC • EDICIÓN LIMITADA 1/1 • TENDENCIA OVERSIZE • 
+    <div class="floating-text" style="top: 20%; left: -5%;">OVERSIZE</div>
+    <div class="floating-text" style="top: 60%; right: -5%;">SOLANA_STREET</div>
+
+    <div class="marquee-top">
+        <div class="marquee-content">
+            MAONYA_DROP_01 // PAGOS: SOLANA - USDT - USDC // PIEZAS ÚNICAS 1:1 // SIN GÉNERO // MAONYA_DROP_01 // PAGOS: SOLANA - USDT - USDC // PIEZAS ÚNICAS 1:1 // SIN GÉNERO // 
         </div>
     </div>
 
-    <nav>
-        <img src="logo.png" alt="MAONYA" class="logo-maonya">
-        <div class="nav-menu">
-            <a href="#">PIEZAS</a>
-            <a href="#">PAGOS_BLOCKCHAIN</a>
-            <a href="#">CONTACTO</a>
+    <header>
+        <div class="logo-box">
+            <img src="logo.png" alt="MAONYA" class="logo-main">
+            <div class="tagline">CALLE_DIGITAL<br>MAO_NYA</div>
         </div>
-    </nav>
-
-    <section class="editorial">
-        <div class="item size-lg">
-            <div class="item-info">
-                <h3>001_GENESIS_CORE</h3>
-                <p>Oversize / Algodón Técnico / 1:1</p>
-            </div>
+        
+        <div style="max-width: 400px; font-weight: 700;">
+            [ ARCHIVO_01 ]<br>
+            NO SEGUIMOS TENDENCIAS. LAS CREAMOS EN LA BLOCKCHAIN. MODA DISRUPTIVA PARA UNA GENERACIÓN QUE NO PAGA CON PAPEL.
         </div>
+    </header>
 
-        <div class="item size-md">
-            <div class="item-info">
-                <h3>002_SOL_VIBES</h3>
-                <p>Accesorios / Digital Asset</p>
-            </div>
+    <section class="main-content">
+        <div class="card c1">
+            <div class="card-info">DROP_001 / SOLANA_CORE</div>
         </div>
-
-        <div class="item size-sm">
-            <div class="item-info">
-                <h3>003_VOID_PANTS</h3>
-                <p>Corte Asimétrico</p>
-            </div>
+        <div class="card c2">
+            <div class="card-info">DROP_002 / USDC_STREET</div>
         </div>
-
-        <div class="item size-sm">
-            <div class="item-info">
-                <h3>004_META_TECH</h3>
-                <p>Limited Edition</p>
-            </div>
+        <div class="card c3">
+            <div class="card-info">DROP_003 / OVERSIZE_VIBE</div>
+        </div>
+        <div class="card c4">
+            <div class="card-info">DROP_004 / 1_OF_1_ONLY</div>
         </div>
     </section>
 
-    <section class="seccion-cripto">
-        <h2>PAGOS<br>FUTUROS.</h2>
-        <div class="pagos-lista">
-            <div class="pago-tag">SOLANA (SOL)</div>
-            <div class="pago-tag">USDT</div>
-            <div class="pago-tag">USDC</div>
+    <section class="crypto-section">
+        <div class="crypto-title">SOLANA<br>USDT_USDC</div>
+        <div class="crypto-grid">
+            <div class="crypto-tag">NATIVO</div>
+            <div class="crypto-tag">DIRECTO</div>
+            <div class="crypto-tag">100%_WEB3</div>
         </div>
-        <p style="margin-top: 40px; max-width: 400px; font-size: 0.8rem;">Aceptamos activos digitales como estándar. Sin bancos. Sin esperas. Directo de tu wallet a MAONYA.</p>
     </section>
 
-    <section class="contacto">
-        <div class="btn-box">
-            <a href="https://wa.me/34651420859" class="btn-directo">WHATSAPP_LINE</a>
-            <a href="mailto:javimoredj@gmail.com" class="btn-directo">EMAIL_PEDIDOS</a>
-        </div>
+    <section class="contact-wrap">
+        <a href="https://wa.me/34651420859" class="btn-huge">WHATSAPP</a>
+        <a href="mailto:javimoredj@gmail.com" class="btn-huge">EMAIL</a>
     </section>
 
     <footer>
-        MAONYA © 2026_DISRUPTIVE_ARCHIVE
+        <div>MAONYA_ESTUDIO © 2026</div>
+        <div>ESPAÑA / TOKYO / METAVERSO</div>
     </footer>
 
     <script>
-        // Efecto de aparición suave tipo "stagger"
-        const items = document.querySelectorAll('.item');
-        const observerOptions = { threshold: 0.1 };
+        // Efecto de movimiento sutil al mover el ratón (Parallax)
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+            
+            document.querySelectorAll('.floating-text').forEach(text => {
+                text.style.transform = `translate(${-moveX * 5}px, ${-moveY * 5}px)`;
+            });
+        });
 
+        // Revelado al hacer scroll
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
-                    }, index * 100);
+                    entry.target.style.opacity = "1";
+                    entry.target.style.filter = "blur(0px)";
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        items.forEach(item => {
-            item.style.opacity = "0";
-            item.style.transform = "translateY(50px)";
-            item.style.transition = "all 0.8s cubic-bezier(0.19, 1, 0.22, 1)";
-            observer.observe(item);
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.filter = "blur(10px)";
+            card.style.transition = "all 1s ease";
+            observer.observe(card);
         });
     </script>
 </body>
 </html>
-
