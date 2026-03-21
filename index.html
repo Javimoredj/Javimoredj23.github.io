@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | TIENDA ONLINE DINÁMICA</title>
+    <title>MAONYA | TIENDA MODA DISRUPTIVA</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --gris-vapor: #f0f0f0;
-            --gris-plata: #e5e5e5;
             --acento: #000000;
             --iridiscente: linear-gradient(90deg, #d199f7, #70e2ff, #a1ffb2, #d199f7);
-            --iridiscente-alpha: rgba(209, 153, 247, 0.1);
+            --iridiscente-alpha: rgba(209, 153, 247, 0.05);
             --font-tech: 'Syncopate', sans-serif;
             --font-mono: 'Space Mono', monospace;
             --sombra-soft: 0 10px 30px rgba(0,0,0,0.03);
-            --sombra-hard: 0 20px 50px rgba(0,0,0,0.08);
-            --transition-lenta: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            --transition-rapida: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --sombra-hard: 0 30px 60px rgba(0,0,0,0.1);
+            --transition-lenta: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-rapida: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* --- Reset y Estilos Base (LIMPIEZA TOTAL) --- */
+        /* Reset y Estilos Base */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body {
@@ -34,13 +33,13 @@
             transition: var(--transition-lenta);
         }
 
-        /* --- FONTO DINÁMICO SUTIL --- */
+        /* Fondo dinámico sutil */
         .capa-fondo {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
             background-size: 400% 400%;
-            animation: gradienteMovimiento 20s ease infinite;
+            animation: gradienteMovimiento 30s ease infinite;
             z-index: -2;
             opacity: 0.5;
         }
@@ -51,7 +50,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- MARQUESINA SUPERIOR (Ajuste de visibilidad) --- */
+        /* Marquesina Superior */
         .marquee {
             background: var(--acento);
             color: #fff;
@@ -77,16 +76,16 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- HEADER --- */
+        /* Header */
         header {
-            height: 80vh;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             padding: 20px;
-            perspective: 1000px; /* Para efecto 3D */
+            perspective: 1000px;
         }
 
         .logo-main {
@@ -97,14 +96,12 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        header:hover .logo-main { transform: scale(1.02) rotate(-1deg); }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
 
-        /* --- SECCIÓN GALERÍA (ESTILO TIENDA DINÁMICA) --- */
+        /* --- SECCIÓN GALERÍA (ESTILO TIENDA CON FOTOS) --- */
         .galeria {
             padding: 60px 5%;
             display: grid;
@@ -114,59 +111,65 @@
             margin: 0 auto;
         }
 
+        /* Estructura para tener 2 productos en la fila 1 y 1 producto en la fila 2 */
+        .fila-productos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            grid-column: span 2;
+        }
+
+        /* Fila 2 con 1 producto (centrado visualmente) */
+        .fila-blanca {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .blanca-wrap {
+            width: calc(50% - 15px); /* Misma medida que los otros pero centrado */
+        }
+
         /* Contenedor del ítem para efecto imán */
         .item-wrap {
             perspective: 1000px;
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(40px) scale(0.95);
             transition: var(--transition-lenta);
         }
 
         .item-wrap.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* El ítem en sí (con efecto de vidrio) */
+        /* El ítem en sí */
         .item {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(20px);
             aspect-ratio: 3/4;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             transition: var(--transition-rapida);
-            cursor: none; /* Quitamos cursor para poner uno custom luego si quieres */
+            cursor: none;
             box-shadow: var(--sombra-soft);
         }
 
-        /* Efecto de borde iridiscente al hover */
-        .item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--iridiscente);
-            opacity: 0;
-            transition: var(--transition-rapida);
-            z-index: -1;
-            filter: blur(30px);
-        }
-
-        /* EFECTO ZOOM Y MOVIMIENTO IMÁN */
+        /* Imagen Real de la prenda */
         .item-img {
-            width: 110%; /* Ligeramente más grande para el movimiento */
-            height: 110%;
-            object-fit: cover;
-            position: absolute;
-            top: -5%; left: -5%;
-            transition: transform 0.3s ease-out; /* Movimiento suave */
-            filter: grayscale(1) contrast(1.1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Recorta profesionalmente la imagen */
+            transition: transform 0.4s ease-out;
+            filter: grayscale(1) contrast(1.1) brightness(1.1); /* Efecto DropTokyo */
         }
 
-        /* Detalles de producto flotantes (Glassmorphism) */
+        /* Detalles de producto flotantes */
         .item-info {
             font-family: var(--font-tech);
             font-size: 0.65rem;
@@ -180,9 +183,10 @@
             opacity: 0;
             transition: var(--transition-rapida);
             box-shadow: var(--sombra-soft);
+            z-index: 10;
         }
 
-        /* Badge de Cripto (Ajuste) */
+        /* Badge de Cripto */
         .badge-cripto {
             position: absolute;
             top: 20px;
@@ -194,28 +198,26 @@
             color: #666;
             opacity: 0.8;
             transition: var(--transition-rapida);
+            z-index: 10;
         }
 
-        /* ESTADOS DE HOVER DINÁMICOS */
+        /* Estados de Hover Dinámicos */
         .item:hover {
             box-shadow: var(--sombra-hard);
             border-color: rgba(255, 255, 255, 0.1);
         }
 
-        .item:hover::before { opacity: 0.2; } /* Brillo de fondo */
         .item:hover .item-info { transform: translateY(0); opacity: 1; }
         .item:hover .badge-cripto { opacity: 1; transform: scale(1.1); }
-        .item:hover .item-img { filter: grayscale(0) contrast(1); transform: scale(1.05); }
+        .item:hover .item-img { filter: grayscale(0) contrast(1) brightness(1); transform: scale(1.03); }
 
-        /* --- SECCIÓN CRIPTO (VISUALMENTE RUIDOSA/MODERNA) --- */
+        /* Sección Cripto */
         .crypto-section {
             margin: 120px 0;
             padding: 100px 5%;
             background: var(--acento);
             color: #fff;
             text-align: center;
-            overflow: hidden;
-            position: relative;
         }
 
         .crypto-title {
@@ -249,7 +251,7 @@
             background: rgba(255,255,255,0.05);
         }
 
-        /* --- CONTACTO (BOTÓN CON PULSO IRIDISCENTE) --- */
+        /* Contacto con Pulso Iridiscente */
         .contact-section {
             padding: 120px 5%;
             text-align: center;
@@ -279,7 +281,6 @@
             box-shadow: var(--sombra-hard);
         }
 
-        /* Botón de WhatsApp con Pulso (Efecto Bonito) */
         .btn-wa {
             border-image: var(--iridiscente) 1;
             color: #000;
@@ -301,7 +302,7 @@
             50% { opacity: 0.2; transform: scale(1.02); }
         }
 
-        /* --- FOOTER --- */
+        /* Footer */
         footer {
             padding: 80px 5%;
             text-align: center;
@@ -312,14 +313,16 @@
             font-weight: 400;
         }
 
-        /* RESPONSIVE MÓVIL (AJUSTE FINO) */
+        /* Responsive Móvil */
         @media (max-width: 768px) {
-            .galeria { grid-template-columns: 1fr; gap: 20px; }
+            .galeria, .fila-productos { grid-template-columns: 1fr; gap: 20px; }
+            .fila-blanca, .fila-productos { display: grid; }
+            .blanca-wrap { width: 100%; }
             .crypto-title { font-size: 1.5rem; }
             .crypto-container { flex-direction: column; align-items: center; }
             .crypto-box { width: 100%; max-width: 300px; }
             .logo-main { width: 280px; }
-            .item:hover .item-info { transform: none; opacity: 1; } /* En móvil detalles fijos */
+            .item:hover .item-info { transform: none; opacity: 1; }
         }
     </style>
 </head>
@@ -338,28 +341,30 @@
     </header>
 
     <section class="galeria">
-        <div class="item-wrap">
-            <div class="item">
-                <div class="badge-cripto">SOLANA / USDC</div>
-                <div class="item-info">PIEZA_01 / GÉNESIS</div>
+        <div class="fila-productos">
+            <div class="item-wrap">
+                <div class="item">
+                    <img src="negra_oro.png" alt="Camiseta MAONYA Negra Oro" class="item-img">
+                    <div class="badge-cripto">SOL / USDT</div>
+                    <div class="item-info">PIEZA_01 / GÉNESIS ORO</div>
+                </div>
+            </div>
+            <div class="item-wrap">
+                <div class="item">
+                    <img src="negra_color.png" alt="Camiseta MAONYA Negra Color" class="item-img">
+                    <div class="badge-cripto">SOL / USDC</div>
+                    <div class="item-info">PIEZA_02 / NEURONAL COLOR</div>
+                </div>
             </div>
         </div>
-        <div class="item-wrap">
-            <div class="item">
-                <div class="badge-cripto">SOLANA / USDT</div>
-                <div class="item-info">PIEZA_02 / NEURONAL</div>
-            </div>
-        </div>
-        <div class="item-wrap">
-            <div class="item">
-                <div class="badge-cripto">SOLANA / SOL</div>
-                <div class="item-info">PIEZA_03 / VOID</div>
-            </div>
-        </div>
-        <div class="item-wrap">
-            <div class="item">
-                <div class="badge-cripto">1:1 ONLY</div>
-                <div class="item-info">PIEZA_04 / CORE</div>
+
+        <div class="fila-blanca">
+            <div class="item-wrap blanca-wrap">
+                <div class="item">
+                    <img src="blanca_iri.png" alt="Camiseta MAONYA Blanca Iridiscente" class="item-img">
+                    <div class="badge-cripto">1:1 ONLY</div>
+                    <div class="item-info">PIEZA_03 / CORE IRI</div>
+                </div>
             </div>
         </div>
     </section>
@@ -383,16 +388,11 @@
     </footer>
 
     <script>
-        // Animación de aparición suave al bajar (Scroll Reveal Organizado)
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px" // Para que aparezcan un poco antes
-        };
-
+        // Animación de aparición suave al bajar
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Stagger effect: retraso suave entre cada aparición
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, index * 100);
@@ -404,30 +404,20 @@
             observer.observe(item);
         });
 
-        // EFECTO IMÁN Y ZOOM EN PRODUCTOS (Solo si no es móvil para rendimiento)
+        // Efecto Imán y Zoom en Productos (Solo si no es móvil)
         if (window.innerWidth > 768) {
             document.querySelectorAll('.item').forEach(item => {
                 item.addEventListener('mousemove', (e) => {
                     const rect = item.getBoundingClientRect();
                     const x = (e.clientX - rect.left) / rect.width;
                     const y = (e.clientY - rect.top) / rect.height;
-                    
-                    // Movimiento suave de la imagen dentro
-                    const moveX = (x - 0.5) * 20; // Hasta 20px
-                    const moveY = (y - 0.5) * 20;
-                    
-                    // Rotación suave del cuadro entero (Efecto imán)
-                    const rotX = (y - 0.5) * -10; // Hasta 10 grados
-                    const rotY = (x - 0.5) * 10;
-                    
-                    item.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-                    // item.querySelector('.item-img').style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+                    const moveX = (x - 0.5) * 15;
+                    const moveY = (y - 0.5) * 15;
+                    item.style.transform = `rotateX(${-moveY}deg) rotateY(${moveX}deg) scale(1.02)`;
                 });
                 
-                // Reset al salir
                 item.addEventListener('mouseleave', () => {
                     item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-                    // item.querySelector('.item-img').style.transform = 'translate(0px, 0px) scale(1)';
                 });
             });
         }
