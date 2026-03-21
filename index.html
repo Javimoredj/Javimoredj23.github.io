@@ -3,58 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | Urban Disruptive</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MAONYA | DISRUPTIVE STREETWEAR</title>
+    <style>
+        /* VARIABLES DE COLOR BASADAS EN TU LOGO */
+        :root {
+            --orange: #e85a24;
+            --pink: #f1b2c6;
+            --green: #1d7a46;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Para el cursor personalizado */
+        }
+
+        body {
+            background-color: var(--white);
+            font-family: 'Arial Black', Gadget, sans-serif;
+            overflow-x: hidden;
+            color: var(--black);
+        }
+
+        /* CURSOR PERSONALIZADO (Círculo tipo Maonya) */
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--orange);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        /* MARQUESINA SUPERIOR (MOVIMIENTO CONTINUO) */
+        .ticker-container {
+            background: var(--black);
+            color: var(--white);
+            padding: 15px 0;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid var(--orange);
+        }
+
+        .ticker-text {
+            display: flex;
+            white-space: nowrap;
+            animation: moveText 15s linear infinite;
+        }
+
+        .ticker-text span {
+            font-size: 1.2rem;
+            padding: 0 40px;
+            letter-spacing: 5px;
+        }
+
+        @keyframes moveText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* LAYOUT PRINCIPAL */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            height: auto;
+        }
+
+        .logo-area img {
+            width: 280px;
+            filter: drop-shadow(8px 8px 0px var(--pink));
+            transition: 0.3s;
+        }
+
+        .logo-area img:hover {
+            transform: scale(1.05) rotate(-3deg);
+            filter: drop-shadow(8px 8px 0px var(--green));
+        }
+
+        /* TEXTOS VERTICALES DISRUPTIVOS */
+        .side-nav {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1.5rem;
+            display: flex;
+            gap: 30px;
+        }
+
+        .side-nav a {
+            text-decoration: none;
+            color: var(--black);
+            border-left: 2px solid transparent;
+            padding: 10px 0;
+            transition: 0.3s;
+        }
+
+        .side-nav a:hover {
+            color: var(--orange);
+            border-left: 2px solid var(--green);
+        }
+
+        /* GRID ESTILO DROPTOKYO */
+        .main-content {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr;
+            gap: 20px;
+            padding: 0 40px 100px 40px;
+        }
+
+        .vertical-title {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 5vw;
+            color: var(--gray);
+            line-height: 1;
+            align-self: end;
+        }
+
+        .gallery {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .photo-card {
+            position: relative;
+            background: var(--gray);
+            overflow: hidden;
+            border: 2px solid var(--black);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.02);
+            filter: saturate(1.5);
+        }
+
+        /* ETIQUETAS SOBREPUESTAS */
+        .label {
+            position: absolute;
+            background: var(--green);
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            top: 20px;
+            right: -10px;
+            transform: rotate(5deg);
+        }
+
+        .photo-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: var(--pink);
+            width: 100%;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: 0.4s;
+        }
+
+        .photo-card:hover .photo-info {
+            transform: translateY(0);
+        }
+
+        /* BLOQUES DE COLOR DISRUPTIVOS */
+        .color-accent {
+            background: var(--orange);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            grid-column: span 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .vertical-title, .side-nav { display: none; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <span class="ticker-item">MAONYA NEW DROP 2026</span>
-            <span class="ticker-item">MAONYA NEW DROP 2026</span>
-            <span class="ticker-item">MAONYA NEW DROP 2026</span>
+    <div id="custom-cursor"></div>
+
+    <div class="ticker-container">
+        <div class="ticker-text">
+            <span>MAONYA STREETWEAR 2026</span>
+            <span>MAONYA STREETWEAR 2026</span>
+            <span>MAONYA STREETWEAR 2026</span>
+            <span>MAONYA STREETWEAR 2026</span>
+            <span>MAONYA STREETWEAR 2026</span>
         </div>
     </div>
 
     <header>
-        <img src="logo-maonya.png" alt="Maonya Logo" class="main-logo">
-        <nav class="vertical-nav">
-            <a href="#">COLLECTION</a>
-            <a href="#">STREET SNAPS</a>
-            <a href="#">ABOUT</a>
+        <div class="logo-area">
+            <img src="https://i.ibb.co/Lhb8pYV/maonya-logo.png" alt="MAONYA">
+        </div>
+        
+        <nav class="side-nav">
+            <a href="#">NEW_ARRIVALS</a>
+            <a href="#">STREET_SNAPS</a>
+            <a href="#">ARCHIVE</a>
         </nav>
     </header>
 
-    <main class="grid-container">
-        <div class="side-text">
-            <h2>STREET STYLE JAPAN</h2>
-        </div>
+    <main class="main-content">
+        <div class="vertical-title">HARAKUJU_VIBES</div>
 
-        <section class="gallery">
-            <div class="item card-large">
-                <img src="tu-foto-1.jpg" alt="Maonya Look">
-                <div class="overlay-text">01. URBAN EXPLORER</div>
-            </div>
+        <div class="gallery">
             
-            <div class="item card-small">
-                <img src="tu-foto-2.jpg" alt="Maonya Look">
-                <p class="caption">TOKYO VIBES</p>
+            <div class="photo-card">
+                <div class="label">MODEL_01</div>
+                <img src="https://images.unsplash.com/photo-1529139572177-393fbf055174?auto=format&fit=crop&q=80&w=800" alt="Street Snap">
+                <div class="photo-info">
+                    <p>MAONYA OVERSIZED HOODIE - 2026</p>
+                </div>
             </div>
 
-            <div class="item card-medium">
-                <div class="color-block"></div>
-                <img src="tu-foto-3.jpg" alt="Maonya Look">
+            <div class="photo-card" style="margin-top: 50px;">
+                <div class="label" style="background: var(--orange);">STREET_02</div>
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800" alt="Street Snap">
+                <div class="photo-info" style="background: var(--green);">
+                    <p>CARGO PANTS / TOKYO EDITION</p>
+                </div>
             </div>
 
-            <div class="item vertical-box">
+            <div class="color-accent">
                 <p>M<br>A<br>O<br>N<br>Y<br>A</p>
             </div>
-        </section>
+
+            <div class="photo-card">
+                <div class="label" style="background: var(--pink); color: black;">DROP_03</div>
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800" alt="Street Snap">
+                <div class="photo-info">
+                    <p>ACCESSORIES / MULTICOLOR</p>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <footer>
-        <p>© 2026 MAONYA - ALL RIGHTS RESERVED</p>
-    </footer>
+    <script>
+        // Lógica del cursor personalizado
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Efecto de escala al pasar por enlaces o fotos
+        document.querySelectorAll('a, .photo-card').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(3)';
+                cursor.style.backgroundColor = 'transparent';
+                cursor.style.borderColor = 'var(--green)';
+            });
+            item.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = 'var(--orange)';
+                cursor.style.borderColor = 'var(--black)';
+            });
+        });
+    </script>
 
 </body>
 </html>
