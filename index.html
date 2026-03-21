@@ -3,72 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | TIENDA MODA DISRUPTIVA</title>
+    <title>MAONYA | ULTRA_DYNAMIC_INTERFACE</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --gris-vapor: #f0f0f0;
-            --acento: #000000;
-            --iridiscente: linear-gradient(90deg, #d199f7, #70e2ff, #a1ffb2, #d199f7);
-            --iridiscente-alpha: rgba(209, 153, 247, 0.05);
-            --font-tech: 'Syncopate', sans-serif;
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --accent: #d199f7;
+            --font-main: 'Syncopate', sans-serif;
             --font-mono: 'Space Mono', monospace;
-            --sombra-soft: 0 10px 30px rgba(0,0,0,0.03);
-            --sombra-hard: 0 30px 60px rgba(0,0,0,0.1);
-            --transition-lenta: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
-            --transition-rapida: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Reset y Estilos Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
         
         body {
-            background-color: var(--gris-vapor);
-            color: var(--acento);
+            background-color: var(--bg);
+            color: var(--text);
             font-family: var(--font-mono);
             overflow-x: hidden;
-            line-height: 1.6;
-            transition: var(--transition-lenta);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Fondo dinámico sutil */
-        .capa-fondo {
+        /* --- EFECTO DE RUIDO VISUAL ANIMADO --- */
+        .noise {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-            background-size: 400% 400%;
-            animation: gradienteMovimiento 30s ease infinite;
-            z-index: -2;
-            opacity: 0.5;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
         }
 
-        @keyframes gradienteMovimiento {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* --- TEXTO FLOTANTE DE FONDO (MOVIMIENTO AUTOMÁTICO) --- */
+        .bg-text {
+            position: fixed;
+            font-family: var(--font-main);
+            font-size: 25vw;
+            color: rgba(255,255,255,0.02);
+            white-space: nowrap;
+            z-index: -1;
+            user-select: none;
+            animation: drift 20s linear infinite;
         }
 
-        /* Marquesina Superior */
-        .marquee {
-            background: var(--acento);
-            color: #fff;
-            padding: 14px 0;
+        @keyframes drift {
+            from { transform: translateX(20%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* --- MARQUESINA ULTRA RÁPIDA --- */
+        .marquee-container {
+            background: var(--text);
+            color: var(--bg);
+            padding: 10px 0;
+            font-family: var(--font-main);
+            font-size: 10px;
+            font-weight: 700;
             overflow: hidden;
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
-            font-family: var(--font-tech);
-            font-size: 10px;
-            letter-spacing: 3px;
-            font-weight: 700;
         }
 
         .marquee-content {
             display: flex;
-            white-space: nowrap;
-            animation: scroll 18s linear infinite;
+            gap: 50px;
+            animation: scroll 10s linear infinite;
         }
 
         @keyframes scroll {
@@ -76,311 +79,178 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Header */
+        /* --- HERO SECTION --- */
         header {
-            height: 70vh;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 20px;
-            perspective: 1000px;
         }
 
         .logo-main {
-            width: 380px;
-            max-width: 90vw;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.05));
-            transition: var(--transition-rapida);
-            animation: float 6s ease-in-out infinite;
+            width: 450px;
+            max-width: 85vw;
+            z-index: 10;
+            filter: invert(1);
+            mix-blend-mode: difference;
+            transition: transform 0.2s ease-out;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* --- SECCIÓN GALERÍA (ESTILO TIENDA CON FOTOS) --- */
-        .galeria {
-            padding: 60px 5%;
+        /* --- GALERÍA DISRUPTIVA CON MOVIMIENTO --- */
+        .shop-grid {
+            padding: 100px 5%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
+            gap: 40px;
         }
 
-        /* Estructura para tener 2 productos en la fila 1 y 1 producto en la fila 2 */
-        .fila-productos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            grid-column: span 2;
-        }
-
-        /* Fila 2 con 1 producto (centrado visualmente) */
-        .fila-blanca {
-            grid-column: span 2;
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .blanca-wrap {
-            width: calc(50% - 15px); /* Misma medida que los otros pero centrado */
-        }
-
-        /* Contenedor del ítem para efecto imán */
-        .item-wrap {
-            perspective: 1000px;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: var(--transition-lenta);
-        }
-
-        .item-wrap.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* El ítem en sí */
-        .item {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(20px);
-            aspect-ratio: 3/4;
-            border: 1px solid rgba(255, 255, 255, 0.7);
+        .product-card {
             position: relative;
+            background: #111;
+            border: 1px solid #222;
+            aspect-ratio: 1/1.2;
             overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            transition: var(--transition-rapida);
-            cursor: none;
-            box-shadow: var(--sombra-soft);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Imagen Real de la prenda */
-        .item-img {
+        .product-card img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Recorta profesionalmente la imagen */
-            transition: transform 0.4s ease-out;
-            filter: grayscale(1) contrast(1.1) brightness(1.1); /* Efecto DropTokyo */
+            object-fit: cover;
+            transition: all 0.8s ease;
+            filter: grayscale(1) brightness(0.8);
         }
 
-        /* Detalles de producto flotantes */
-        .item-info {
-            font-family: var(--font-tech);
-            font-size: 0.65rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            color: var(--acento);
-            padding: 10px 20px;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition-rapida);
-            box-shadow: var(--sombra-soft);
-            z-index: 10;
+        /* Hover dinámico */
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: scale(0.98) translateY(-10px);
         }
 
-        /* Badge de Cripto */
-        .badge-cripto {
+        .product-card:hover img {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.1);
+        }
+
+        /* Texto vertical dinámico */
+        .side-label {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-family: var(--font-tech);
-            font-size: 0.5rem;
-            background: rgba(0,0,0,0.05);
-            padding: 5px 10px;
-            color: #666;
-            opacity: 0.8;
-            transition: var(--transition-rapida);
-            z-index: 10;
-        }
-
-        /* Estados de Hover Dinámicos */
-        .item:hover {
-            box-shadow: var(--sombra-hard);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .item:hover .item-info { transform: translateY(0); opacity: 1; }
-        .item:hover .badge-cripto { opacity: 1; transform: scale(1.1); }
-        .item:hover .item-img { filter: grayscale(0) contrast(1) brightness(1); transform: scale(1.03); }
-
-        /* Sección Cripto */
-        .crypto-section {
-            margin: 120px 0;
-            padding: 100px 5%;
-            background: var(--acento);
-            color: #fff;
-            text-align: center;
-        }
-
-        .crypto-title {
-            font-family: var(--font-tech);
-            font-size: 2rem;
-            margin-bottom: 50px;
-            letter-spacing: 6px;
-            font-weight: 700;
-        }
-
-        .crypto-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .crypto-box {
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 15px 30px;
-            font-size: 0.8rem;
-            font-family: var(--font-tech);
+            writing-mode: vertical-rl;
+            right: 15px;
+            top: 15px;
+            font-size: 10px;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            transition: var(--transition-rapida);
-            background: rgba(255,255,255,0.02);
+            color: var(--accent);
         }
 
-        .crypto-box:hover {
-            border-color: #fff;
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.05);
+        /* --- SECCIÓN CRIPTO (LAYOUT RADICAL) --- */
+        .crypto-block {
+            padding: 150px 5%;
+            background: #ffffff;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        /* Contacto con Pulso Iridiscente */
-        .contact-section {
-            padding: 120px 5%;
-            text-align: center;
+        .crypto-row {
+            font-family: var(--font-main);
+            font-size: 8vw;
+            line-height: 0.8;
+            border-bottom: 2px solid #000;
+            padding: 20px 0;
+            transition: 0.4s;
         }
 
-        .btn-directo {
+        .crypto-row:hover {
+            padding-left: 50px;
+            color: var(--accent);
+        }
+
+        /* --- BOTONES DE ACCIÓN --- */
+        .contact-wrap {
+            padding: 100px 5%;
+            background: var(--bg);
+        }
+
+        .btn-glitch {
             display: block;
             width: 100%;
-            max-width: 500px;
-            margin: 15px auto;
-            padding: 25px;
-            border: 1px solid var(--acento);
-            text-decoration: none;
-            color: var(--acento);
-            font-family: var(--font-tech);
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            transition: var(--transition-rapida);
-            position: relative;
-            background: #fff;
-            box-shadow: var(--sombra-soft);
-        }
-
-        .btn-directo:hover {
-            background: var(--acento);
+            padding: 40px;
+            border: 2px solid #fff;
             color: #fff;
-            box-shadow: var(--sombra-hard);
-        }
-
-        .btn-wa {
-            border-image: var(--iridiscente) 1;
-            color: #000;
-            overflow: hidden;
-        }
-
-        .btn-wa::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--iridiscente);
-            opacity: 0.1;
-            z-index: -1;
-            animation: pulseIridiscente 3s infinite;
-        }
-
-        @keyframes pulseIridiscente {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.2; transform: scale(1.02); }
-        }
-
-        /* Footer */
-        footer {
-            padding: 80px 5%;
+            text-decoration: none;
             text-align: center;
-            font-family: var(--font-tech);
-            font-size: 0.75rem;
-            letter-spacing: 5px;
-            border-top: 1px solid rgba(0,0,0,0.06);
-            font-weight: 400;
+            font-family: var(--font-main);
+            font-size: 2rem;
+            position: relative;
+            margin-bottom: 20px;
+            transition: 0.3s;
         }
 
-        /* Responsive Móvil */
+        .btn-glitch:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 10px 10px 0px var(--accent);
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.5;
+            letter-spacing: 5px;
+        }
+
+        /* MOBILE ADJUSTMENTS */
         @media (max-width: 768px) {
-            .galeria, .fila-productos { grid-template-columns: 1fr; gap: 20px; }
-            .fila-blanca, .fila-productos { display: grid; }
-            .blanca-wrap { width: 100%; }
-            .crypto-title { font-size: 1.5rem; }
-            .crypto-container { flex-direction: column; align-items: center; }
-            .crypto-box { width: 100%; max-width: 300px; }
-            .logo-main { width: 280px; }
-            .item:hover .item-info { transform: none; opacity: 1; }
+            .shop-grid { grid-template-columns: 1fr; }
+            .crypto-row { font-size: 12vw; }
+            .btn-glitch { font-size: 1.2rem; padding: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="capa-fondo"></div>
+    <div class="noise"></div>
+    <div class="bg-text">MAONYA_M_A_O_N_Y_A</div>
 
-    <div class="marquee">
+    <div class="marquee-container">
         <div class="marquee-content">
-            MAONYA // SOLANA // USDT // USDC // EDICIONES 1:1 // DESDE 2019 // OVERSIZE // MAONYA // SOLANA // USDT // USDC // EDICIONES 1:1 // DESDE 2019 // OVERSIZE // 
+            MAONYA // SOLANA NATIVE // USDT ACCEPTED // 1:1 ARCHIVE // SINCE 2019 // NO RULES // MAONYA // SOLANA NATIVE // USDT ACCEPTED // 1:1 ARCHIVE // SINCE 2019 // NO RULES //
         </div>
     </div>
 
-    <header>
-        <img src="logo.png" alt="MAONYA" class="logo-main">
+    <header id="hero">
+        <img src="logo.png" alt="MAONYA" class="logo-main" id="logo">
     </header>
 
-    <section class="galeria">
-        <div class="fila-productos">
-            <div class="item-wrap">
-                <div class="item">
-                    <img src="negra_oro.png" alt="Camiseta MAONYA Negra Oro" class="item-img">
-                    <div class="badge-cripto">SOL / USDT</div>
-                    <div class="item-info">PIEZA_01 / GÉNESIS ORO</div>
-                </div>
-            </div>
-            <div class="item-wrap">
-                <div class="item">
-                    <img src="negra_color.png" alt="Camiseta MAONYA Negra Color" class="item-img">
-                    <div class="badge-cripto">SOL / USDC</div>
-                    <div class="item-info">PIEZA_02 / NEURONAL COLOR</div>
-                </div>
-            </div>
+    <section class="shop-grid">
+        <div class="product-card">
+            <img src="negra_oro.png" alt="">
+            <div class="side-label">PIEZA_01 / SOL</div>
         </div>
-
-        <div class="fila-blanca">
-            <div class="item-wrap blanca-wrap">
-                <div class="item">
-                    <img src="blanca_iri.png" alt="Camiseta MAONYA Blanca Iridiscente" class="item-img">
-                    <div class="badge-cripto">1:1 ONLY</div>
-                    <div class="item-info">PIEZA_03 / CORE IRI</div>
-                </div>
-            </div>
+        <div class="product-card">
+            <img src="negra_color.png" alt="">
+            <div class="side-label">PIEZA_02 / USDT</div>
+        </div>
+        <div class="product-card" style="grid-column: span 2;">
+            <img src="blanca_iri.png" alt="" style="aspect-ratio: 2/1;">
+            <div class="side-label">EDICIÓN_ESPECIAL / 1:1</div>
         </div>
     </section>
 
-    <section class="crypto-section">
-        <h2 class="crypto-title">BLOCKCHAIN PAY</h2>
-        <div class="crypto-container">
-            <div class="crypto-box">SOLANA (SOL)</div>
-            <div class="crypto-box">USDT</div>
-            <div class="crypto-box">USDC</div>
-        </div>
+    <section class="crypto-block">
+        <div class="crypto-row">SOLANA</div>
+        <div class="crypto-row">USDT</div>
+        <div class="crypto-row">USDC</div>
     </section>
 
-    <section class="contact-section">
-        <a href="https://wa.me/34651420859" class="btn-directo btn-wa">WHATSAPP / PEDIDOS</a>
-        <a href="mailto:javimoredj@gmail.com" class="btn-directo">EMAIL / CONSULTAS</a>
+    <section class="contact-wrap">
+        <a href="https://wa.me/34651420859" class="btn-glitch">WHATSAPP</a>
+        <a href="mailto:javimoredj@gmail.com" class="btn-glitch">EMAIL</a>
     </section>
 
     <footer>
@@ -388,39 +258,25 @@
     </footer>
 
     <script>
-        // Animación de aparición suave al bajar
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.item-wrap').forEach(item => {
-            observer.observe(item);
+        // MOVIMIENTO DEL LOGO CON EL RATÓN (PERSPECTIVA)
+        const logo = document.getElementById('logo');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 20;
+            const y = (window.innerHeight / 2 - e.pageY) / 20;
+            logo.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
         });
 
-        // Efecto Imán y Zoom en Productos (Solo si no es móvil)
-        if (window.innerWidth > 768) {
-            document.querySelectorAll('.item').forEach(item => {
-                item.addEventListener('mousemove', (e) => {
-                    const rect = item.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width;
-                    const y = (e.clientY - rect.top) / rect.height;
-                    const moveX = (x - 0.5) * 15;
-                    const moveY = (y - 0.5) * 15;
-                    item.style.transform = `rotateX(${-moveY}deg) rotateY(${moveX}deg) scale(1.02)`;
-                });
-                
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-                });
+        // PARALLAX AL SCROLL PARA LOS PRODUCTOS
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, i) => {
+                const speed = 0.05 * (i + 1);
+                const rect = card.getBoundingClientRect();
+                if(rect.top < window.innerHeight) {
+                    card.style.transform = `translateY(${rect.top * speed * -1}px)`;
+                }
             });
-        }
+        });
     </script>
 </body>
 </html>
