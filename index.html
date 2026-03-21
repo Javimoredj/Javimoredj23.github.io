@@ -3,280 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAONYA | ULTRA_DYNAMIC_INTERFACE</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --text: #ffffff;
-            --accent: #d199f7;
-            --font-main: 'Syncopate', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
-        
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font-mono);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- EFECTO DE RUIDO VISUAL ANIMADO --- */
-        .noise {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* --- TEXTO FLOTANTE DE FONDO (MOVIMIENTO AUTOMÁTICO) --- */
-        .bg-text {
-            position: fixed;
-            font-family: var(--font-main);
-            font-size: 25vw;
-            color: rgba(255,255,255,0.02);
-            white-space: nowrap;
-            z-index: -1;
-            user-select: none;
-            animation: drift 20s linear infinite;
-        }
-
-        @keyframes drift {
-            from { transform: translateX(20%); }
-            to { transform: translateX(-100%); }
-        }
-
-        /* --- MARQUESINA ULTRA RÁPIDA --- */
-        .marquee-container {
-            background: var(--text);
-            color: var(--bg);
-            padding: 10px 0;
-            font-family: var(--font-main);
-            font-size: 10px;
-            font-weight: 700;
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .marquee-content {
-            display: flex;
-            gap: 50px;
-            animation: scroll 10s linear infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* --- HERO SECTION --- */
-        header {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .logo-main {
-            width: 450px;
-            max-width: 85vw;
-            z-index: 10;
-            filter: invert(1);
-            mix-blend-mode: difference;
-            transition: transform 0.2s ease-out;
-        }
-
-        /* --- GALERÍA DISRUPTIVA CON MOVIMIENTO --- */
-        .shop-grid {
-            padding: 100px 5%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-
-        .product-card {
-            position: relative;
-            background: #111;
-            border: 1px solid #222;
-            aspect-ratio: 1/1.2;
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.8s ease;
-            filter: grayscale(1) brightness(0.8);
-        }
-
-        /* Hover dinámico */
-        .product-card:hover {
-            border-color: var(--accent);
-            transform: scale(0.98) translateY(-10px);
-        }
-
-        .product-card:hover img {
-            filter: grayscale(0) brightness(1);
-            transform: scale(1.1);
-        }
-
-        /* Texto vertical dinámico */
-        .side-label {
-            position: absolute;
-            writing-mode: vertical-rl;
-            right: 15px;
-            top: 15px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-        }
-
-        /* --- SECCIÓN CRIPTO (LAYOUT RADICAL) --- */
-        .crypto-block {
-            padding: 150px 5%;
-            background: #ffffff;
-            color: #000;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .crypto-row {
-            font-family: var(--font-main);
-            font-size: 8vw;
-            line-height: 0.8;
-            border-bottom: 2px solid #000;
-            padding: 20px 0;
-            transition: 0.4s;
-        }
-
-        .crypto-row:hover {
-            padding-left: 50px;
-            color: var(--accent);
-        }
-
-        /* --- BOTONES DE ACCIÓN --- */
-        .contact-wrap {
-            padding: 100px 5%;
-            background: var(--bg);
-        }
-
-        .btn-glitch {
-            display: block;
-            width: 100%;
-            padding: 40px;
-            border: 2px solid #fff;
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
-            font-family: var(--font-main);
-            font-size: 2rem;
-            position: relative;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-
-        .btn-glitch:hover {
-            background: #fff;
-            color: #000;
-            box-shadow: 10px 10px 0px var(--accent);
-        }
-
-        footer {
-            padding: 50px;
-            text-align: center;
-            font-size: 12px;
-            opacity: 0.5;
-            letter-spacing: 5px;
-        }
-
-        /* MOBILE ADJUSTMENTS */
-        @media (max-width: 768px) {
-            .shop-grid { grid-template-columns: 1fr; }
-            .crypto-row { font-size: 12vw; }
-            .btn-glitch { font-size: 1.2rem; padding: 25px; }
-        }
-    </style>
+    <title>MAONYA | Urban Disruptive</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="noise"></div>
-    <div class="bg-text">MAONYA_M_A_O_N_Y_A</div>
-
-    <div class="marquee-container">
-        <div class="marquee-content">
-            MAONYA // SOLANA NATIVE // USDT ACCEPTED // 1:1 ARCHIVE // SINCE 2019 // NO RULES // MAONYA // SOLANA NATIVE // USDT ACCEPTED // 1:1 ARCHIVE // SINCE 2019 // NO RULES //
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">MAONYA NEW DROP 2026</span>
+            <span class="ticker-item">MAONYA NEW DROP 2026</span>
+            <span class="ticker-item">MAONYA NEW DROP 2026</span>
         </div>
     </div>
 
-    <header id="hero">
-        <img src="logo.png" alt="MAONYA" class="logo-main" id="logo">
+    <header>
+        <img src="logo-maonya.png" alt="Maonya Logo" class="main-logo">
+        <nav class="vertical-nav">
+            <a href="#">COLLECTION</a>
+            <a href="#">STREET SNAPS</a>
+            <a href="#">ABOUT</a>
+        </nav>
     </header>
 
-    <section class="shop-grid">
-        <div class="product-card">
-            <img src="negra_oro.png" alt="">
-            <div class="side-label">PIEZA_01 / SOL</div>
+    <main class="grid-container">
+        <div class="side-text">
+            <h2>STREET STYLE JAPAN</h2>
         </div>
-        <div class="product-card">
-            <img src="negra_color.png" alt="">
-            <div class="side-label">PIEZA_02 / USDT</div>
-        </div>
-        <div class="product-card" style="grid-column: span 2;">
-            <img src="blanca_iri.png" alt="" style="aspect-ratio: 2/1;">
-            <div class="side-label">EDICIÓN_ESPECIAL / 1:1</div>
-        </div>
-    </section>
 
-    <section class="crypto-block">
-        <div class="crypto-row">SOLANA</div>
-        <div class="crypto-row">USDT</div>
-        <div class="crypto-row">USDC</div>
-    </section>
+        <section class="gallery">
+            <div class="item card-large">
+                <img src="tu-foto-1.jpg" alt="Maonya Look">
+                <div class="overlay-text">01. URBAN EXPLORER</div>
+            </div>
+            
+            <div class="item card-small">
+                <img src="tu-foto-2.jpg" alt="Maonya Look">
+                <p class="caption">TOKYO VIBES</p>
+            </div>
 
-    <section class="contact-wrap">
-        <a href="https://wa.me/34651420859" class="btn-glitch">WHATSAPP</a>
-        <a href="mailto:javimoredj@gmail.com" class="btn-glitch">EMAIL</a>
-    </section>
+            <div class="item card-medium">
+                <div class="color-block"></div>
+                <img src="tu-foto-3.jpg" alt="Maonya Look">
+            </div>
+
+            <div class="item vertical-box">
+                <p>M<br>A<br>O<br>N<br>Y<br>A</p>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        MAONYA DESDE 2019
+        <p>© 2026 MAONYA - ALL RIGHTS RESERVED</p>
     </footer>
 
-    <script>
-        // MOVIMIENTO DEL LOGO CON EL RATÓN (PERSPECTIVA)
-        const logo = document.getElementById('logo');
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 20;
-            const y = (window.innerHeight / 2 - e.pageY) / 20;
-            logo.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-        });
-
-        // PARALLAX AL SCROLL PARA LOS PRODUCTOS
-        window.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach((card, i) => {
-                const speed = 0.05 * (i + 1);
-                const rect = card.getBoundingClientRect();
-                if(rect.top < window.innerHeight) {
-                    card.style.transform = `translateY(${rect.top * speed * -1}px)`;
-                }
-            });
-        });
-    </script>
 </body>
 </html>
