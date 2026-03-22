@@ -17,9 +17,9 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a1a1a 100%);
+            background: #e8e6e1;
             background-attachment: fixed;
-            color: #FFFFFF;
+            color: #2a2a2a;
             overflow-x: hidden;
         }
 
@@ -108,10 +108,10 @@
             left: 0;
             right: 0;
             z-index: 50;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(232, 230, 225, 0.98);
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid #FF6B35;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+            border-bottom: 1px solid rgba(200, 150, 100, 0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.5s ease-out;
         }
 
@@ -131,7 +131,7 @@
             gap: 0.5rem;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #FFFFFF;
+            color: #2a2a2a;
             animation: float 4s ease-in-out infinite;
         }
 
@@ -139,7 +139,7 @@
             height: 56px;
             width: 56px;
             object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.6));
+            filter: drop-shadow(0 0 10px rgba(200, 150, 100, 0.4));
             animation: rotateInfinite 8s linear infinite;
         }
 
@@ -149,7 +149,7 @@
         }
 
         .nav-links a {
-            color: #FFFFFF;
+            color: #2a2a2a;
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: bold;
@@ -166,12 +166,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #FF6B35, #FF1493);
+            background: linear-gradient(90deg, #C89664, #D4A574);
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: #FF6B35;
+            color: #D4A574;
         }
 
         .nav-links a:hover::after {
@@ -182,7 +182,7 @@
             display: block;
             background: none;
             border: none;
-            color: #FFFFFF;
+            color: #2a2a2a;
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s;
@@ -190,7 +190,7 @@
         }
 
         .menu-toggle:hover {
-            color: #FF6B35;
+            color: #D4A574;
             transform: rotate(90deg);
         }
 
@@ -210,9 +210,7 @@
             align-items: center;
             justify-content: center;
             padding-top: 80px;
-            background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663369981435/nMwSotwLDJ3RMzQ4aPa7rU/hero-background-d4hBDMUQSuBuAiuG8cxJJj.webp');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(180deg, #e8e6e1 0%, #f0ede8 50%, #e8e6e1 100%);
             background-attachment: fixed;
             position: relative;
             overflow: hidden;
@@ -222,7 +220,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(10, 10, 10, 0.4);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* Elementos Orbitales */
@@ -240,7 +238,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 1px solid rgba(255, 107, 53, 0.2);
+            border: 1px solid rgba(200, 150, 100, 0.25);
             border-radius: 50%;
             left: 50%;
             top: 50%;
@@ -261,21 +259,21 @@
         }
 
         .particle.orange { 
-            background: #FF6B35;
+            background: #C89664;
             animation: orbitSmall 8s linear infinite;
-            box-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+            box-shadow: 0 0 10px rgba(200, 150, 100, 0.5);
         }
 
         .particle.pink { 
-            background: #FF1493;
+            background: #A67C52;
             animation: orbitMedium 12s linear infinite reverse;
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+            box-shadow: 0 0 10px rgba(166, 124, 82, 0.5);
         }
 
         .particle.green { 
-            background: #00FF41;
+            background: #8B6F47;
             animation: orbitLarge 16s linear infinite;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+            box-shadow: 0 0 10px rgba(139, 111, 71, 0.5);
         }
 
         .hero-content {
@@ -290,15 +288,16 @@
         .hero h1 {
             font-size: clamp(3rem, 10vw, 8rem);
             margin-bottom: 1rem;
-            animation: neonGlow 3s infinite;
-            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5), 0 0 60px rgba(255, 20, 147, 0.3);
+            animation: none;
+            text-shadow: 0 0 15px rgba(200, 150, 100, 0.2);
             min-height: 100px;
+            color: #2a2a2a;
         }
 
         .hero-logo {
             display: inline-block;
             animation: bounce 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.6));
+            filter: drop-shadow(0 0 15px rgba(200, 150, 100, 0.4));
         }
 
         .hero-logo img {
@@ -309,12 +308,12 @@
         }
 
         .hero-divider {
-            height: 4px;
-            background: linear-gradient(90deg, #FF6B35, #FF1493, #00FF41);
+            height: 2px;
+            background: linear-gradient(90deg, #C89664, #A67C52, #8B6F47);
             width: 200px;
             margin: 1.5rem auto;
             animation: slideDown 0.8s ease-out 0.3s both;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+            box-shadow: 0 0 15px rgba(200, 150, 100, 0.3);
         }
 
         .hero p {
@@ -322,8 +321,9 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 2rem;
-            animation: neonGlow 3s infinite;
+            animation: none;
             animation-delay: 0.5s;
+            color: #2a2a2a;
         }
 
         .cta-buttons {
@@ -348,14 +348,14 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            border: 2px solid #FF6B35;
+            border: 2px solid #C89664;
             background: transparent;
             color: #FFFFFF;
             cursor: pointer;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            animation: borderPulse 3s infinite;
+            animation: none;
         }
 
         .btn::before {
@@ -365,15 +365,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(200, 150, 100, 0.3), transparent);
             animation: shimmer 2s infinite;
         }
 
         .btn:hover {
-            background: #FF6B35;
-            color: #0a0a0a;
-            transform: scale(1.05) skewX(-10deg);
-            box-shadow: 0 0 30px rgba(255, 107, 53, 0.8), inset 0 0 20px rgba(255, 20, 147, 0.3);
+            background: #C89664;
+            color: #0f0f0f;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(200, 150, 100, 0.5);
         }
 
         .btn-secondary {
@@ -382,18 +382,31 @@
         }
 
         .btn-secondary:hover {
-            border-color: #00FF41;
-            color: #00FF41;
+            border-color: #D4A574;
+            color: #D4A574;
             background: transparent;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+            box-shadow: 0 0 20px rgba(200, 150, 100, 0.4);
         }
 
         /* Products Section */
         .products {
             padding: 5rem 2rem;
-            background: #0a0a0a;
+            background: #f5f3f0;
             position: relative;
             overflow: hidden;
+        }
+
+        .products::after {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, rgba(200, 150, 100, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
         }
 
         .products::before {
@@ -412,10 +425,11 @@
             text-align: center;
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 3rem;
-            animation: neonGlow 3s infinite;
-            text-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+            animation: none;
+            text-shadow: 0 0 10px rgba(200, 150, 100, 0.15);
             position: relative;
             z-index: 2;
+            color: #2a2a2a;
         }
 
         .products-grid {
@@ -429,11 +443,11 @@
         }
 
         .product-card {
-            border: 2px solid #FF6B35;
+            border: 1px solid rgba(200, 150, 100, 0.4);
             aspect-ratio: 1;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
             animation: fadeIn 0.6s ease-out;
         }
@@ -442,7 +456,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 107, 53, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(200, 150, 100, 0.05) 50%, transparent 70%);
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
@@ -455,9 +469,9 @@
         }
 
         .product-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 0 40px rgba(255, 107, 53, 0.8), inset 0 0 20px rgba(255, 20, 147, 0.2);
-            border-color: #FF1493;
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(200, 150, 100, 0.3);
+            border-color: rgba(200, 150, 100, 0.7);
         }
 
         .product-card:hover .product-image {
@@ -492,19 +506,20 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
-            animation: neonGlow 3s infinite;
+            animation: none;
+            color: #2a2a2a;
         }
 
         .product-price {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #FF6B35;
+            color: #C89664;
         }
 
         /* Footer */
         footer {
-            background: #000000;
-            border-top: 2px solid #FF6B35;
+            background: #d9d5ce;
+            border-top: 1px solid rgba(200, 150, 100, 0.3);
             padding: 3rem 2rem 1rem;
             position: relative;
             overflow: hidden;
@@ -516,8 +531,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #FF6B35, #FF1493, #00FF41, #FF6B35);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(200, 150, 100, 0.3), transparent);
             animation: shimmer 3s infinite;
         }
 
@@ -533,12 +548,12 @@
         }
 
         .footer-section h4 {
-            color: #FF6B35;
+            color: #C89664;
             margin-bottom: 1rem;
             text-transform: uppercase;
             font-size: 0.875rem;
             letter-spacing: 0.1em;
-            animation: neonGlow 3s infinite;
+            animation: none;
         }
 
         .footer-section ul {
@@ -550,7 +565,7 @@
         }
 
         .footer-section a {
-            color: #999999;
+            color: #5a5a5a;
             text-decoration: none;
             font-size: 0.875rem;
             transition: all 0.3s;
@@ -558,16 +573,16 @@
         }
 
         .footer-section a:hover {
-            color: #FF6B35;
+            color: #D4A574;
             transform: translateX(5px);
-            text-shadow: 0 0 10px rgba(255, 107, 53, 0.6);
+            text-shadow: 0 0 8px rgba(200, 150, 100, 0.3);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #333333;
-            color: #666666;
+            border-top: 1px solid rgba(200, 150, 100, 0.2);
+            color: #5a5a5a;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -595,21 +610,21 @@
         .scroll-indicator div {
             width: 24px;
             height: 40px;
-            border: 2px solid #FF6B35;
+            border: 1px solid rgba(200, 150, 100, 0.4);
             border-radius: 12px;
             display: flex;
             align-items: flex-start;
             justify-content: center;
             padding-top: 8px;
             animation: pulse 2s infinite;
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.6);
+            box-shadow: 0 0 10px rgba(200, 150, 100, 0.2);
         }
 
         .scroll-indicator div::after {
             content: '';
             width: 4px;
             height: 8px;
-            background: #FF6B35;
+            background: #C89664;
             border-radius: 2px;
             animation: slideDown 2s infinite;
         }
@@ -617,11 +632,11 @@
         /* Crypto Section */
         .crypto {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a1a1a 100%);
+            background: #e8e6e1;
             position: relative;
             overflow: hidden;
-            border-top: 2px solid #00FF41;
-            border-bottom: 2px solid #FF1493;
+            border-top: 1px solid rgba(200, 150, 100, 0.3);
+            border-bottom: 1px solid rgba(200, 150, 100, 0.3);
         }
 
         .crypto::before {
@@ -631,7 +646,7 @@
             left: -50%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(200, 150, 100, 0.05) 0%, transparent 70%);
             animation: rotateInfinite 20s linear infinite;
             pointer-events: none;
         }
@@ -651,14 +666,14 @@
 
         .crypto-header h2 {
             font-size: clamp(2rem, 5vw, 3rem);
-            animation: neonGlow 3s infinite;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            animation: none;
+            text-shadow: 0 0 10px rgba(200, 150, 100, 0.2);
             margin-bottom: 1rem;
         }
 
         .crypto-header p {
             font-size: 1.125rem;
-            color: #CCCCCC;
+            color: #4a4a4a;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
@@ -673,14 +688,14 @@
         }
 
         .crypto-card {
-            border: 2px solid #00FF41;
+            border: 1px solid rgba(200, 150, 100, 0.4);
             padding: 2rem;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
             animation: fadeIn 0.6s ease-out;
-            background: rgba(0, 255, 65, 0.05);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .crypto-card::before {
@@ -690,16 +705,16 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(200, 150, 100, 0.1), transparent);
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
 
         .crypto-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.8), inset 0 0 20px rgba(0, 255, 65, 0.1);
-            border-color: #FF1493;
-            background: rgba(0, 255, 65, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(200, 150, 100, 0.3);
+            border-color: rgba(200, 150, 100, 0.6);
+            background: rgba(200, 150, 100, 0.05);
         }
 
         .crypto-icon {
@@ -713,34 +728,34 @@
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: #00FF41;
+            color: #C89664;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .crypto-description {
             font-size: 0.875rem;
-            color: #AAAAAA;
+            color: #5a5a5a;
             line-height: 1.5;
             margin-bottom: 1rem;
         }
 
         .crypto-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #00FF41, #00CC33);
-            color: #000000;
+            background: linear-gradient(135deg, #C89664, #A67C52);
+            color: #FFFFFF;
             padding: 0.5rem 1rem;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            animation: pulse 2s infinite;
+            animation: none;
         }
 
         .crypto-benefits {
-            background: rgba(0, 255, 65, 0.05);
-            border: 2px solid #00FF41;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(200, 150, 100, 0.4);
             padding: 2rem;
             border-radius: 4px;
             margin-top: 2rem;
@@ -756,18 +771,18 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(200, 150, 100, 0.05), transparent);
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
 
         .crypto-benefits h3 {
-            color: #00FF41;
+            color: #C89664;
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            animation: neonGlow 3s infinite;
+            animation: none;
         }
 
         .benefits-list {
@@ -795,7 +810,7 @@
         }
 
         .benefit-text h4 {
-            color: #00FF41;
+            color: #C89664;
             margin-bottom: 0.25rem;
             font-size: 0.875rem;
             text-transform: uppercase;
@@ -803,7 +818,7 @@
         }
 
         .benefit-text p {
-            color: #AAAAAA;
+            color: #5a5a5a;
             font-size: 0.75rem;
             line-height: 1.4;
         }
@@ -815,7 +830,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(232, 230, 225, 0.98);
             backdrop-filter: blur(10px);
             display: none;
             flex-direction: column;
@@ -823,7 +838,7 @@
             gap: 1.5rem;
             z-index: 40;
             animation: slideDown 0.3s ease-out;
-            border-left: 2px solid #FF6B35;
+            border-left: 1px solid rgba(200, 150, 100, 0.3);
         }
 
         .mobile-menu.active {
@@ -831,7 +846,7 @@
         }
 
         .mobile-menu a {
-            color: #FFFFFF;
+            color: #2a2a2a;
             text-decoration: none;
             font-size: 1.125rem;
             font-weight: bold;
@@ -937,6 +952,9 @@
             <p>Disruptive Streetwear</p>
             <p style="font-size: 1rem; text-transform: none; margin-bottom: 2rem; animation: none;">
                 Ropa que desafía lo convencional. Diseño caótico. Energía pura.
+            </p>
+            <p style="font-size: 0.875rem; color: #A67C52; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; animation: none;">
+                Kia kaha • Mana • Whakapapa
             </p>
             <div class="cta-buttons">
                 <button class="btn">Explorar Tienda</button>
@@ -1153,7 +1171,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            © 2026 MAONYA. Todos los derechos reservados. | Disruptive Streetwear
+            © 2026 MAONYA. Todos los derechos reservados. | Disruptive Streetwear<br>
+            <span style="font-size: 0.65rem; color: #8B6F47; margin-top: 0.5rem; display: block;">Kia kaha • Mana • Whakapapa • Aroha</span>
         </div>
     </footer>
 
