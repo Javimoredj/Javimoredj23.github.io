@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAONYA - Web3 Streetwear Revolution</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,1238 +12,677 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: #000000;
-            color: #ffffff;
+            font-family: 'Space Mono', monospace;
+            background: linear-gradient(135deg, #f5f1ed 0%, #ede8e3 100%);
+            color: #2a2a2a;
             overflow-x: hidden;
-            position: relative;
         }
 
-        :root {
-            --cyan: #00D9FF;
-            --magenta: #FF1493;
-            --yellow: #FFD700;
-            --green: #00FF41;
-            --purple: #9D4EDD;
-        }
-
-        /* FONDO TRIBAL MAORÍ ANIMADO */
-        #tribalBackground {
+        /* Fondo tribal maorí - perla con patrones sutiles */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            opacity: 0.08;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(139, 69, 19, 0.04) 35px, rgba(139, 69, 19, 0.04) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(184, 134, 11, 0.03) 35px, rgba(184, 134, 11, 0.03) 70px),
+                radial-gradient(circle at 20% 50%, rgba(210, 180, 140, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(188, 143, 143, 0.06) 0%, transparent 50%);
             pointer-events: none;
-            background-size: cover;
-            background-position: center;
-            animation: tribalShift 20s ease-in-out infinite;
+            z-index: -1;
         }
 
-        @keyframes tribalShift {
-            0%, 100% { opacity: 0.08; }
-            50% { opacity: 0.12; }
-        }
-
-        /* CANVAS PARA EFECTOS */
-        #effectsCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* NAVBAR */
+        /* Navbar */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: linear-gradient(90deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
-            backdrop-filter: blur(30px);
-            border-bottom: 3px solid var(--cyan);
-            padding: 1rem 2rem;
-            box-shadow: 0 0 50px rgba(0, 217, 255, 0.4);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            z-index: 2;
+            padding: 20px 40px;
+            background: rgba(245, 241, 237, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .logo-nav {
-            height: 55px;
-            width: 55px;
-            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.8));
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation: logoPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.8)); }
-            50% { filter: drop-shadow(0 0 40px rgba(255, 20, 147, 0.8)); }
-        }
-
-        .logo-nav:hover {
-            transform: scale(1.15) rotate(-8deg);
-            filter: drop-shadow(0 0 40px rgba(0, 217, 255, 1));
-        }
-
-        .nav-right {
+        .logo-container {
             display: flex;
-            gap: 2rem;
             align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #8b4513, #d2691e, #cd853f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 30px;
+            list-style: none;
         }
 
         .nav-links a {
-            color: #e0e0e0;
+            color: #3a3a3a;
             text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
+            font-size: 13px;
             transition: all 0.3s;
-            position: relative;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyan), var(--magenta));
-            transition: width 0.3s ease;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .nav-links a:hover {
-            color: var(--cyan);
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
+            border-bottom-color: #8b4513;
+            color: #8b4513;
         }
 
         .wallet-btn {
-            padding: 0.9rem 2rem;
-            background: linear-gradient(135deg, var(--cyan), var(--magenta));
-            color: #000;
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            color: #fff;
             border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            border-radius: 0;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-size: 0.75rem;
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
-            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
         }
 
         .wallet-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.8), 0 0 40px rgba(255, 20, 147, 0.6);
-            background: linear-gradient(135deg, var(--magenta), var(--cyan));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
         }
 
-        /* HERO */
+        /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-            animation: radiusShift 8s ease-in-out infinite;
-        }
-
-        @keyframes radiusShift {
-            0%, 100% { opacity: 0.05; }
-            50% { opacity: 0.15; }
-        }
-
-        .hero-content {
             text-align: center;
-            max-width: 1000px;
-            position: relative;
-            z-index: 3;
+            padding: 80px 40px;
+            background: linear-gradient(180deg, rgba(210, 180, 140, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
         }
 
-        .logo-hero {
-            height: 200px;
-            width: 200px;
-            margin: 0 auto 2rem;
-            filter: drop-shadow(0 0 50px rgba(0, 217, 255, 0.9));
-            animation: heroFloat 6s ease-in-out infinite, heroPulse 3s ease-in-out infinite;
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            animation: slideInDown 0.8s ease;
+            color: #2a2a2a;
         }
 
-        @keyframes heroFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-50px); }
-        }
-
-        @keyframes heroPulse {
-            0%, 100% { filter: drop-shadow(0 0 50px rgba(0, 217, 255, 0.9)); }
-            50% { filter: drop-shadow(0 0 80px rgba(255, 20, 147, 0.9)); }
-        }
-
-        .hero-title {
-            font-size: 6rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-            letter-spacing: 0.08em;
-            line-height: 1;
-            text-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
-            animation: titleGlitch 4s ease-in-out infinite;
-        }
-
-        @keyframes titleGlitch {
-            0%, 100% { text-shadow: 0 0 40px rgba(0, 217, 255, 0.5); }
-            50% { text-shadow: 0 0 60px rgba(255, 20, 147, 0.7); }
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--cyan);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-            font-family: 'Space Mono', monospace;
-            animation: subtitlePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes subtitlePulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
-        .hero-description {
-            font-size: 1.05rem;
-            color: #c0c0c0;
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .feature {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(255, 20, 147, 0.05) 100%);
-            border: 2px solid rgba(0, 217, 255, 0.3);
-            border-radius: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: linear-gradient(45deg, transparent, rgba(0, 217, 255, 0.3), transparent);
-            transition: all 0.5s;
-        }
-
-        .feature:hover::before {
-            top: 0;
-            left: 0;
-        }
-
-        .feature:hover {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(255, 20, 147, 0.1) 100%);
-            border-color: var(--cyan);
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(0, 217, 255, 0.3);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: iconBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes iconBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .feature-title {
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--cyan);
-            font-family: 'Space Mono', monospace;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.2rem 3rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            border: 3px solid var(--cyan);
-            background: transparent;
-            color: var(--cyan);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-radius: 0;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--cyan);
-            z-index: -1;
-            transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .btn:hover {
-            color: #000;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.6);
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--cyan), var(--magenta));
-            color: #000;
-            border: 3px solid var(--cyan);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--magenta), var(--cyan));
-            border-color: var(--magenta);
-        }
-
-        /* SECCIONES */
-        section {
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-container {
-            max-width: 1400px;
+        .hero p {
+            font-size: 16px;
+            color: #5a5a5a;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 0 2rem;
+            animation: slideInUp 0.8s ease;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sección de Logo Secundario */
+        .logo-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(180deg, rgba(184, 134, 11, 0.05) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .logo-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            color: #8b4513;
+        }
+
+        .secondary-logo {
+            animation: pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .logo-section p {
+            font-size: 14px;
+            color: #6a6a6a;
+            margin-top: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Productos */
+        .products-section {
+            padding: 80px 40px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            letter-spacing: 0.08em;
-            text-shadow: 0 0 40px rgba(0, 217, 255, 0.4);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.05rem;
-            color: #a0a0a0;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* ESTADÍSTICAS */
-        .stats {
-            padding: 8rem 2rem;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(255, 20, 147, 0.04) 100%);
-            border-top: 3px solid var(--cyan);
-            border-bottom: 3px solid var(--magenta);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 2px solid rgba(0, 217, 255, 0.3);
-            border-radius: 0;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .stat-card:hover {
-            border-color: var(--cyan);
-            transform: translateY(-15px) scale(1.05);
-            background: rgba(0, 217, 255, 0.1);
-            box-shadow: 0 30px 60px rgba(0, 217, 255, 0.3);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--cyan);
-            margin-bottom: 0.5rem;
             font-family: 'Bebas Neue', sans-serif;
-            text-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 3px;
+            color: #8b4513;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: #a0a0a0;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* GALERÍA */
-        .gallery {
-            padding: 8rem 2rem;
-        }
-
-        .gallery-grid {
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .product-card {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(255, 20, 147, 0.05) 100%);
-            border: 2px solid rgba(0, 217, 255, 0.3);
-            border-radius: 0;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            border-radius: 10px;
             overflow: hidden;
-            cursor: pointer;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease forwards;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 217, 255, 0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-            z-index: 2;
-        }
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
 
-        .product-card:hover::before {
-            transform: translateX(100%);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .product-card:hover {
-            border-color: var(--cyan);
-            transform: translateY(-20px) scale(1.08);
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(255, 20, 147, 0.1) 100%);
-            box-shadow: 0 40px 80px rgba(0, 217, 255, 0.4);
+            border-color: #d2691e;
+            box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15);
+            transform: translateY(-10px);
         }
 
         .product-image {
             width: 100%;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(255, 20, 147, 0.08) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            position: relative;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.4s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
         }
 
         .product-info {
-            padding: 2rem;
+            padding: 20px;
         }
 
         .product-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
             font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.05em;
+            font-size: 18px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: #2a2a2a;
         }
 
         .product-nft {
-            font-size: 0.8rem;
-            color: var(--cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 1rem;
-            font-family: 'Space Mono', monospace;
+            background: rgba(139, 69, 19, 0.08);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 11px;
+            color: #8b4513;
+            margin-bottom: 15px;
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .product-price {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--magenta);
-            margin-bottom: 1.2rem;
-            font-family: 'Bebas Neue', sans-serif;
-            text-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 13px;
         }
 
-        .music-player {
-            background: rgba(0, 217, 255, 0.1);
-            border: 2px solid rgba(0, 217, 255, 0.3);
-            border-radius: 0;
-            padding: 1rem;
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-            margin-bottom: 1.2rem;
+        .price-crypto {
+            font-size: 14px;
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .price-eur {
+            font-size: 12px;
+            color: #6a6a6a;
         }
 
         .play-btn {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            width: 100%;
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            color: #fff;
             border: none;
-            border-radius: 0;
-            color: #000;
+            padding: 12px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
         }
 
         .play-btn:hover {
-            transform: scale(1.2) rotate(-10deg);
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
         }
 
-        .music-title {
-            font-size: 0.8rem;
-            color: #a0a0a0;
-            flex: 1;
-            font-family: 'Space Mono', monospace;
+        .play-btn:active {
+            transform: scale(0.95);
         }
 
-        .buy-btn {
-            width: 100%;
-            padding: 0.9rem;
-            background: var(--cyan);
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            border-radius: 0;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-size: 0.85rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .buy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.7);
-            background: var(--magenta);
-        }
-
-        /* FOOTER */
-        footer {
-            background: linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.98) 100%);
-            border-top: 3px solid var(--cyan);
-            padding: 4rem 2rem 1rem;
-            color: #ffffff;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: var(--cyan);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .footer-section a {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .footer-section a:hover {
-            color: var(--cyan);
-            text-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 2px solid rgba(0, 217, 255, 0.3);
-            color: #666666;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* MODAL */
-        .modal {
-            display: none;
+        /* Carrito */
+        .cart-icon {
             position: fixed;
-            z-index: 200;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.97);
-            backdrop-filter: blur(20px);
-            overflow-y: auto;
-        }
-
-        .modal.active {
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.99) 0%, rgba(26, 26, 26, 0.99) 100%);
-            padding: 3rem;
-            border-radius: 0;
-            max-width: 1000px;
-            width: 90%;
-            border: 3px solid var(--cyan);
-            box-shadow: 0 0 80px rgba(0, 217, 255, 0.6);
-        }
-
-        .modal-close {
-            float: right;
-            font-size: 2.5rem;
             cursor: pointer;
-            color: var(--cyan);
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+            animation: bounce 2s infinite;
+            z-index: 999;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #d2691e;
+            color: #fff;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Notificación */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 69, 19, 0.9);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 5px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(245, 241, 237, 0.95);
+            padding: 40px;
+            text-align: center;
+            color: #6a6a6a;
+            border-top: 1px solid rgba(139, 69, 19, 0.15);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s;
-            font-weight: 700;
-            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 1px;
         }
 
-        .modal-close:hover {
-            color: var(--magenta);
-            transform: rotate(90deg) scale(1.2);
+        .social-links a:hover {
+            color: #d2691e;
         }
 
-        .nft-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 1.5rem;
-        }
-
-        .nft-image {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(255, 20, 147, 0.08) 100%);
-            border: 3px solid var(--cyan);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-        }
-
-        .nft-info h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.05em;
-        }
-
-        .nft-stat {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(0, 217, 255, 0.3);
-        }
-
-        .nft-stat-label {
-            font-size: 0.8rem;
-            color: var(--cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .nft-stat-value {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #ffffff;
-            font-family: 'Bebas Neue', sans-serif;
-        }
-
-        .audio-player-full {
-            width: 100%;
-            margin: 2rem 0;
-            background: rgba(0, 217, 255, 0.1);
-            border: 3px solid var(--cyan);
-            border-radius: 0;
-            padding: 2rem;
-        }
-
-        .audio-player-full h4 {
-            margin-bottom: 1.5rem;
-            color: var(--cyan);
-            font-size: 1.2rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .audio-controls {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .audio-controls button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--cyan), var(--magenta));
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            border-radius: 0;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .audio-controls button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.7);
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
             .nav-links {
-                display: none;
+                flex-direction: column;
+                gap: 10px;
             }
 
-            .hero-title {
-                font-size: 3.5rem;
-            }
-
-            .nft-details {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 36px;
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: 32px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- FONDO TRIBAL MAORÍ -->
-    <div id="tribalBackground"></div>
-
-    <!-- CANVAS PARA EFECTOS -->
-    <canvas id="effectsCanvas"></canvas>
-
-    <!-- NAVBAR -->
+    <!-- Navbar -->
     <nav>
-        <div class="nav-container">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663369981435/PKZFDLFSDudyOSOU.png" alt="MAONYA" class="logo-nav">
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="#stats">Estadísticas</a>
-                    <a href="#gallery">Colección</a>
-                    <a href="#footer">Contacto</a>
-                </div>
-                <button class="wallet-btn" onclick="connectWallet()">Conectar</button>
-            </div>
+        <div class="logo-container">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663369981435/PPMptRJBVwgCUXXQ.png" alt="MAONYA" class="logo-img">
+            <div class="logo-text">MAONYA</div>
         </div>
+        <ul class="nav-links">
+            <li><a href="#productos">PRODUCTOS</a></li>
+            <li><a href="#nft">NFT</a></li>
+            <li><a href="#cripto">CRIPTO</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+        <button class="wallet-btn" onclick="connectWallet()">🔗 CONECTAR WALLET</button>
     </nav>
 
-    <!-- HERO -->
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663369981435/PKZFDLFSDudyOSOU.png" alt="MAONYA" class="logo-hero">
-            <h1 class="hero-title">MAONYA</h1>
-            <div class="hero-subtitle">Web3 Streetwear Revolution</div>
-            <p class="hero-description">
-                Ropa Oversize Premium + NFTs Únicos + Hip-Hop Chillout + Pagos Cripto. La revolución de la moda tribal futurista.
-            </p>
-            
-            <div class="hero-features">
-                <div class="feature">
-                    <div class="feature-icon">👕</div>
-                    <div class="feature-title">Oversize</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🎨</div>
-                    <div class="feature-title">NFT</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🎵</div>
-                    <div class="feature-title">Música</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💎</div>
-                    <div class="feature-title">Blockchain</div>
+        <h1>MAONYA</h1>
+        <p>Web3 Streetwear Revolution • NFTs • Criptomonedas • Música</p>
+    </section>
+
+    <!-- Logo Secundario -->
+    <section class="logo-section">
+        <h2>LA TRIBU DIGITAL</h2>
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663369981435/qcFrdYZSoHwAPJEN.png" alt="MAONYA Tribal" class="secondary-logo" style="width: 250px; height: auto;">
+        <p>Cada prenda es un NFT único en la blockchain de Solana</p>
+    </section>
+
+    <!-- Productos -->
+    <section class="products-section" id="productos">
+        <h2 class="section-title">COLECCIÓN GENESIS</h2>
+        <div class="products-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663369981435/nMwSotwLDJ3RMzQ4aPa7rU/maonya-tee-genesis-2Nz6JQNnKJRWeLD73g5X8M.webp" alt="Genesis Tee" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">GENESIS TEE</div>
+                    <div class="product-nft">🎨 NFT #0001</div>
+                    <div class="product-price">
+                        <div>
+                            <div class="price-crypto">0.05 SOL</div>
+                            <div class="price-eur">€45</div>
+                        </div>
+                    </div>
+                    <button class="play-btn" onclick="playMusic(1)">▶ REPRODUCIR BEAT</button>
                 </div>
             </div>
 
-            <div class="cta-buttons">
-                <button class="btn btn-primary" onclick="scrollToSection('gallery')">Ver Colección</button>
-                <button class="btn" onclick="connectWallet()">Conectar Wallet</button>
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663369981435/nMwSotwLDJ3RMzQ4aPa7rU/maonya-hoodie-cyber-hc6274XH56SGU5DbSeSqYB.webp" alt="Cyber Hoodie" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">CYBER HOODIE</div>
+                    <div class="product-nft">🎨 NFT #0002</div>
+                    <div class="product-price">
+                        <div>
+                            <div class="price-crypto">0.1 SOL</div>
+                            <div class="price-eur">€90</div>
+                        </div>
+                    </div>
+                    <button class="play-btn" onclick="playMusic(2)">▶ REPRODUCIR BEAT</button>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663369981435/nMwSotwLDJ3RMzQ4aPa7rU/maonya-jacket-quantum-Q2qSM9DCwFGCCcudRXTUgP.webp" alt="Quantum Jacket" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">QUANTUM JACKET</div>
+                    <div class="product-nft">🎨 NFT #0003</div>
+                    <div class="product-price">
+                        <div>
+                            <div class="price-crypto">0.2 SOL</div>
+                            <div class="price-eur">€180</div>
+                        </div>
+                    </div>
+                    <button class="play-btn" onclick="playMusic(3)">▶ REPRODUCIR BEAT</button>
+                </div>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663369981435/nMwSotwLDJ3RMzQ4aPa7rU/maonya-tee-retro-FwRoySQzY6kzfxfkQJ2geF.webp" alt="Retro Tee" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">RETRO TEE</div>
+                    <div class="product-nft">🎨 NFT #0004</div>
+                    <div class="product-price">
+                        <div>
+                            <div class="price-crypto">0.05 SOL</div>
+                            <div class="price-eur">€45</div>
+                        </div>
+                    </div>
+                    <button class="play-btn" onclick="playMusic(4)">▶ REPRODUCIR BEAT</button>
+                </div>
+            </div>
+
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663369981435/nMwSotwLDJ3RMzQ4aPa7rU/maonya-hoodie-tech-HCdeXGg4ZXg4hgxUL43S97.webp" alt="Tech Hoodie" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">TECH HOODIE</div>
+                    <div class="product-nft">🎨 NFT #0005</div>
+                    <div class="product-price">
+                        <div>
+                            <div class="price-crypto">0.1 SOL</div>
+                            <div class="price-eur">€90</div>
+                        </div>
+                    </div>
+                    <button class="play-btn" onclick="playMusic(5)">▶ REPRODUCIR BEAT</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ESTADÍSTICAS -->
-    <section class="stats" id="stats">
-        <div class="section-container">
-            <h2 class="section-title">Estadísticas</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="salesCount">0</div>
-                    <div class="stat-label">Ventas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="holdersCount">0</div>
-                    <div class="stat-label">Holders</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="volumeCount">0</div>
-                    <div class="stat-label">Volumen</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="floorCount">0</div>
-                    <div class="stat-label">Floor</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Carrito -->
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
 
-    <!-- GALERÍA -->
-    <section class="gallery" id="gallery">
-        <div class="section-container">
-            <h2 class="section-title">Colección</h2>
-            <p class="section-subtitle">Cada pieza es única, vinculada a un NFT con música hip-hop chillout</p>
-            <div class="gallery-grid" id="productsGrid"></div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>MAONYA</h4>
-                <p style="font-size: 0.9rem; color: #a0a0a0; font-family: 'Space Mono', monospace;">
-                    Web3 Streetwear. Ropa + NFTs + Música.
-                </p>
-            </div>
-            <div class="footer-section">
-                <h4>Enlaces</h4>
-                <a href="#gallery">Colección</a>
-                <a href="#stats">Estadísticas</a>
-                <a href="#">Blog</a>
-            </div>
-            <div class="footer-section">
-                <h4>Contacto</h4>
-                <a href="mailto:info@maonya.com">info@maonya.com</a>
-                <a href="#">Twitter</a>
-                <a href="#">Discord</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2026 MAONYA. Web3 Streetwear Revolution.
+    <!-- Footer -->
+    <footer id="contacto">
+        <p>© 2026 MAONYA - Web3 Streetwear Revolution</p>
+        <p>Cada prenda es un NFT único en la blockchain de Solana</p>
+        <p>Pagos en SOL, USDC, USDT y próximamente MAONYA Token</p>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Discord</a>
+            <a href="#">Instagram</a>
         </div>
     </footer>
 
-    <!-- MODAL NFT -->
-    <div class="modal" id="nftModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
-        </div>
-    </div>
-
     <script>
-        // ===== GENERAR FONDO TRIBAL MAORÍ =====
-        function generateTribalPattern() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 1200;
-            canvas.height = 1200;
-            const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.strokeStyle = 'rgba(0, 217, 255, 0.3)';
-            ctx.lineWidth = 2;
-
-            for (let i = 0; i < 8; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                drawKoru(ctx, x, y, Math.random() * 100 + 50);
-            }
-
-            document.getElementById('tribalBackground').style.backgroundImage = `url(${canvas.toDataURL()})`;
-        }
-
-        function drawKoru(ctx, x, y, size) {
-            ctx.beginPath();
-            for (let i = 0; i < 360; i += 8) {
-                const angle = (i * Math.PI) / 180;
-                const r = size * (i / 360);
-                const px = x + r * Math.cos(angle);
-                const py = y + r * Math.sin(angle);
-                if (i === 0) ctx.moveTo(px, py);
-                else ctx.lineTo(px, py);
-            }
-            ctx.stroke();
-        }
-
-        // ===== GENERADOR HIP-HOP SIMPLE =====
-        class HipHopBeatGenerator {
-            constructor() {
-                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            generateBeat(duration = 4) {
-                try {
-                    if (this.audioContext.state === 'suspended') {
-                        this.audioContext.resume();
-                    }
-
-                    const now = this.audioContext.currentTime;
-                    
-                    // KICK
-                    this.playKick(now, 0.8);
-                    this.playKick(now + 0.5, 0.6);
-                    this.playKick(now + 1, 0.7);
-                    this.playKick(now + 1.5, 0.5);
-                    this.playKick(now + 2, 0.8);
-                    this.playKick(now + 2.5, 0.6);
-                    this.playKick(now + 3, 0.7);
-                    this.playKick(now + 3.5, 0.5);
-
-                    // MELODÍA HIP-HOP
-                    const notes = [130.81, 146.83, 164.81, 174.61, 196.00];
-                    for (let i = 0; i < 4; i++) {
-                        this.playNote(now + i * 1, notes[Math.floor(Math.random() * notes.length)], 0.8);
-                    }
-                } catch (e) {
-                    console.error('Error en Hip-Hop Beat:', e);
-                }
-            }
-
-            playKick(time, volume) {
-                const osc = this.audioContext.createOscillator();
-                const gain = this.audioContext.createGain();
-
-                osc.connect(gain);
-                gain.connect(this.audioContext.destination);
-
-                osc.frequency.setValueAtTime(150, time);
-                osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5);
-
-                gain.gain.setValueAtTime(volume, time);
-                gain.gain.exponentialRampToValueAtTime(0, time + 0.5);
-
-                osc.start(time);
-                osc.stop(time + 0.5);
-            }
-
-            playNote(time, freq, volume) {
-                const osc = this.audioContext.createOscillator();
-                const gain = this.audioContext.createGain();
-
-                osc.connect(gain);
-                gain.connect(this.audioContext.destination);
-
-                osc.frequency.value = freq;
-                osc.type = 'sine';
-
-                gain.gain.setValueAtTime(volume * 0.2, time);
-                gain.gain.exponentialRampToValueAtTime(0, time + 0.8);
-
-                osc.start(time);
-                osc.stop(time + 0.8);
-            }
-        }
-
-        const musicGenerator = new HipHopBeatGenerator();
-
-        // ===== DATOS DE PRODUCTOS =====
-        const products = [
-            { id: 1, name: 'Genesis Tee', price: 0.05, emoji: '👕', nftId: '#0001', track: 'Chill Vibes' },
-            { id: 2, name: 'Cyber Hoodie', price: 0.1, emoji: '🎽', nftId: '#0002', track: 'Urban Dreams' },
-            { id: 3, name: 'Neon Jacket', price: 0.2, emoji: '🧥', nftId: '#0003', track: 'Night Beats' },
-            { id: 4, name: 'Retro Tee', price: 0.05, emoji: '👕', nftId: '#0004', track: 'Smooth Flow' },
-            { id: 5, name: 'Tech Hoodie', price: 0.1, emoji: '🎽', nftId: '#0005', track: 'Digital Chill' },
-            { id: 6, name: 'Quantum Jacket', price: 0.2, emoji: '🧥', nftId: '#0006', track: 'Future Vibes' }
-        ];
-
-        let walletConnected = false;
-        let walletAddress = '';
-
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = products.map((product, index) => `
-                <div class="product-card" onclick="openNFTModal(${product.id})">
-                    <div class="product-image">${product.emoji}</div>
-                    <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-nft">NFT ${product.nftId}</div>
-                        <div class="product-price">${product.price} SOL</div>
-                        <div class="music-player">
-                            <button class="play-btn" onclick="playHipHopBeat(event)">▶</button>
-                            <div class="music-title">${product.track}</div>
-                        </div>
-                        <button class="buy-btn" onclick="buyNFT(event, ${product.id})">Comprar</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openNFTModal(productId) {
-            const product = products.find(p => p.id === productId);
-            const modal = document.getElementById('nftModal');
-            const modalBody = document.getElementById('modalBody');
-
-            modalBody.innerHTML = `
-                <div class="nft-details">
-                    <div class="nft-image">${product.emoji}</div>
-                    <div class="nft-info">
-                        <h3>${product.name}</h3>
-                        <p style="color: #a0a0a0; margin-bottom: 1.5rem; line-height: 1.7; font-family: 'Space Mono', monospace;">Prenda única vinculada a NFT certificado en blockchain Solana.</p>
-                        
-                        <div class="nft-stat">
-                            <div class="nft-stat-label">NFT ID</div>
-                            <div class="nft-stat-value">${product.nftId}</div>
-                        </div>
-
-                        <div class="nft-stat">
-                            <div class="nft-stat-label">Precio</div>
-                            <div class="nft-stat-value">${product.price} SOL</div>
-                        </div>
-
-                        <div class="nft-stat">
-                            <div class="nft-stat-label">Blockchain</div>
-                            <div class="nft-stat-value">Solana</div>
-                        </div>
-
-                        <div class="nft-stat">
-                            <div class="nft-stat-label">Música</div>
-                            <div class="nft-stat-value">${product.track}</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="audio-player-full">
-                    <h4>Hip-Hop Chillout</h4>
-                    <div class="audio-controls">
-                        <button onclick="playHipHopBeat(event)">▶ Reproducir</button>
-                        <button onclick="downloadAudio()">⬇ Descargar</button>
-                    </div>
-                </div>
-
-                <button class="btn btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.2rem;" onclick="buyNFT(event, ${product.id})">
-                    Comprar (${product.price} SOL)
-                </button>
-            `;
-
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('nftModal').classList.remove('active');
-        }
-
-        function playHipHopBeat(e) {
-            e.stopPropagation();
-            try {
-                if (musicGenerator.audioContext.state === 'suspended') {
-                    musicGenerator.audioContext.resume().then(() => {
-                        musicGenerator.generateBeat(4);
-                        showNotification('🎵 Reproduciendo Hip-Hop...');
-                    });
-                } else {
-                    musicGenerator.generateBeat(4);
-                    showNotification('🎵 Reproduciendo Hip-Hop...');
-                }
-            } catch (err) {
-                console.error('Error playing audio:', err);
-                showNotification('⚠️ Error al reproducir audio');
-            }
-        }
-
-        function downloadAudio() {
-            showNotification('⬇️ Descargando...');
-        }
-
+        // Conectar Wallet
         function connectWallet() {
-            if (walletConnected) {
-                alert('Wallet: ' + walletAddress);
-                return;
+            showNotification('🔗 Conectando wallet...');
+            setTimeout(() => {
+                showNotification('✅ Wallet conectado: 0x742d...5e8F');
+            }, 1500);
+        }
+
+        // Reproducir Música - Beat único para cada prenda
+        function playMusic(productId) {
+            showNotification(`🎵 Reproduciendo Hip-Hop Beat #${productId}...`);
+            
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const now = audioContext.currentTime;
+            
+            // Diferentes patrones para cada prenda
+            const patterns = {
+                1: { bpm: 92, kickPattern: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5], snarePattern: [1, 3] },
+                2: { bpm: 95, kickPattern: [0, 0.5, 1, 2, 2.5, 3], snarePattern: [1, 2, 3] },
+                3: { bpm: 88, kickPattern: [0, 1, 2, 3], snarePattern: [0.5, 1.5, 2.5, 3.5] },
+                4: { bpm: 90, kickPattern: [0, 0.5, 1.5, 2, 3, 3.5], snarePattern: [1, 2, 3] },
+                5: { bpm: 94, kickPattern: [0, 0.25, 0.5, 1, 1.5, 2, 2.5, 3], snarePattern: [1, 3] }
+            };
+
+            const pattern = patterns[productId] || patterns[1];
+
+            // Crear kick drum
+            const kickOsc = audioContext.createOscillator();
+            const kickGain = audioContext.createGain();
+            kickOsc.connect(kickGain);
+            kickGain.connect(audioContext.destination);
+
+            // Crear snare
+            const snareOsc = audioContext.createOscillator();
+            const snareGain = audioContext.createGain();
+            snareOsc.connect(snareGain);
+            snareGain.connect(audioContext.destination);
+
+            // Crear hi-hat
+            const hihatOsc = audioContext.createOscillator();
+            const hihatGain = audioContext.createGain();
+            hihatOsc.connect(hihatGain);
+            hihatGain.connect(audioContext.destination);
+
+            // Reproducir kicks
+            pattern.kickPattern.forEach(time => {
+                kickOsc.frequency.setValueAtTime(150, now + time);
+                kickOsc.frequency.exponentialRampToValueAtTime(0.01, now + time + 0.3);
+                kickGain.gain.setValueAtTime(0.3, now + time);
+                kickGain.gain.exponentialRampToValueAtTime(0.01, now + time + 0.3);
+            });
+
+            // Reproducir snares
+            pattern.snarePattern.forEach(time => {
+                snareOsc.frequency.setValueAtTime(200, now + time);
+                snareGain.gain.setValueAtTime(0.2, now + time);
+                snareGain.gain.exponentialRampToValueAtTime(0.01, now + time + 0.2);
+            });
+
+            // Hi-hats constantes
+            for (let i = 0; i < 8; i++) {
+                hihatOsc.frequency.setValueAtTime(8000 + Math.random() * 2000, now + i * 0.5);
+                hihatGain.gain.setValueAtTime(0.08, now + i * 0.5);
+                hihatGain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.5 + 0.1);
             }
-            
-            walletConnected = true;
-            walletAddress = '0x' + Math.random().toString(16).substr(2, 40);
-            
-            const btn = document.querySelector('.wallet-btn');
-            btn.textContent = walletAddress.substr(0, 10) + '...';
-            
-            showNotification('✅ Wallet Conectado');
+
+            kickOsc.start(now);
+            kickOsc.stop(now + 4);
+            snareOsc.start(now);
+            snareOsc.stop(now + 4);
+            hihatOsc.start(now);
+            hihatOsc.stop(now + 4);
         }
 
-        function buyNFT(e, productId) {
-            e.stopPropagation();
-            
-            if (!walletConnected) {
-                showNotification('⚠️ Conecta tu wallet');
-                connectWallet();
-                return;
-            }
-
-            const product = products.find(p => p.id === productId);
-            showNotification(`🎉 ${product.name} - Transacción iniciada`);
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
+        // Mostrar Notificación
         function showNotification(message) {
             const notification = document.createElement('div');
+            notification.className = 'notification';
             notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: linear-gradient(135deg, var(--cyan), var(--magenta));
-                color: #000;
-                padding: 1.2rem 2.5rem;
-                border-radius: 0;
-                z-index: 300;
-                font-weight: 700;
-                box-shadow: 0 15px 50px rgba(0, 217, 255, 0.8);
-                font-family: 'Space Mono', monospace;
-                letter-spacing: 0.05em;
-            `;
             document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 3000);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
 
-        function updateStats() {
-            document.getElementById('salesCount').textContent = Math.floor(Math.random() * 500) + 100;
-            document.getElementById('holdersCount').textContent = Math.floor(Math.random() * 300) + 50;
-            document.getElementById('volumeCount').textContent = (Math.random() * 50 + 10).toFixed(1) + ' SOL';
-            document.getElementById('floorCount').textContent = (0.05 + Math.random() * 0.1).toFixed(3) + ' SOL';
+        // Carrito
+        function toggleCart() {
+            showNotification('🛒 Carrito: 0 items');
         }
 
-        renderProducts();
-        updateStats();
-        setInterval(updateStats, 5000);
-        generateTribalPattern();
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('nftModal');
-            if (event.target === modal) {
-                modal.classList.remove('active');
-            }
+        // Actualizar contador del carrito
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = '0';
         }
+
+        // Inicializar
+        updateCartCount();
     </script>
 </body>
 </html>
